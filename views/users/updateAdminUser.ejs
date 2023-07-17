@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <%- include('../partials/header) %>
+    <form action="/updateadminuser/update?_method=put'" method="post" enctype="multipart/form-data">
+        <div>
+            <h2>Usuario:</h2>
+            <h2>Email:</h2>
+        </div>
+        <div>
+            <label for="">Nombre</label>
+            <input type="text" name="" id="">
+        </div>
+        <div>
+            <label for="">Apellido</label>
+            <input type="text" name="" id="">
+        </div>
+        <input type="submit" value="Guardar cambios">
+    </form>
+    <form action="/updateadminuser/delete?_method=delete" method="post">
+        <div>
+            <input type="submit" value="Eliminar">
+        </div>
+    </form>
+    <%- include('../partials/footer') %>
+</body>
+</html>

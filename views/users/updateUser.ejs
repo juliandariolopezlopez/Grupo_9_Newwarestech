@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="/css/product/style-carrito.css">
+
+<H1>Actualizar Usuario</H1>
+<br><br>
+<form action="/users/<%= users.id %>/put?_method=put" method="post" enctype="multipart/form-data">
+    <label for="image">Imagen: </label><input type="file" name="image" id="img"><br><br>
+
+    <label for="firstName">Nombre:  </label>
+    <input type="text" name="firstName" value="<%= users.firstName %>" > <br><br>
+
+    <label for="lastName">Apellido:  </label>
+    <input type="text" name="lastName" value="<%= users.lastName %>" > <br><br>
+
+    <label for="password">password:  </label>
+    <input type="password" name="password" value="<%= users.password %>" > <br><br>
+
+    <label for="email">Email:  </label>
+    <input type="text" name="email" value="<%= users.email %>" > <br><br>
+    
+    <label for="categoria">Categoria:  </label>
+    <input type="text" name="category" value="<%= users.category %>" > <br><br>
+    <input type="submit" value="Guardar cambios">
+</form>

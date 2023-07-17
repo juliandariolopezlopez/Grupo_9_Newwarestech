@@ -1,0 +1,18 @@
+
+const userModel = require('../models/users');
+
+function userLoggedNavMiddleware(req,res,next){
+
+    res.locals.isLogged = false;
+
+    if(req.session.userLogged){
+
+        res.locals.isLogged=true;
+        res.locals.userLogged = req.session.userLogged;
+
+    }
+
+    next();
+}
+
+module.exports=userLoggedNavMiddleware;

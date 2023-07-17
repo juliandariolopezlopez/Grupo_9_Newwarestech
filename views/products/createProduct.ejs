@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="/css/product/style-carrito.css">
+<%- include('../partials/header') %>
+        <H1>Crear Producto</H1>
+
+
+            <div style ="color: red;" style="font-size: small;">
+
+                <%if(errors.length > 0){%>
+                    <h2>Por favor verifique el formulario a llenar:</h2>
+                    <ul>
+                        <% errors.forEach(elemento=>{%>
+                        <li>
+                               <%= elemento.msg%>
+                            </li>
+
+                            <% })%> 
+                    </ul>
+                <%}%>
+
+            </div>
+
+        <form action="/products/createProduct" method="post" enctype="multipart/form-data" >
+            <fieldset>
+                <legend>Elige una Categoria</legend>
+                
+                <div>
+                    <label for="product_type">phones</label>
+                    <input type="radio" name="product_type" id="product_type" value="phones">
+                </div>
+                <div>
+                    <label for="product_type">software</label>
+                    <input type="radio" name="product_type" id="product_type" value="software">
+                </div>
+                <div>
+                    <label for="product_type">accesories</label>
+                    <input type="radio" name="product_type" id="product_type"  value="accesories">
+                </div>
+                <div>
+                    <label for="product_type">printer</label>
+                    <input type="radio" name="product_type" id="product_type" value="printer">
+                </div>
+            </fieldset><br>
+            <fieldset>
+                <legend>Ingresa la Infomación</legend>
+                <div>
+                    <label for="name">Nombre</label>
+                    <input type="text" name="name" id="name" placeholder="nombre">
+                </div>
+                <div>
+                    <label for="img">Imagen</label>
+                    <input type="file" name="img" id="img">
+                </div>
+                <div>
+                    <label for="price">Price</label>
+                    <input type="text" name="price" id="price" placeholder="precio">
+                </div>
+                <div>
+                    <label for="description">Descripcion</label>
+                    <input type="text" name="description" id="description" placeholder="descripcion">
+                </div>
+            </fieldset>
+            <div>
+                <input type="submit" value="agregar">
+            </div>
+        </form>

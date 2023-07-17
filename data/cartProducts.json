@@ -1,0 +1,83 @@
+[
+    {
+        "id": 13,
+        "name": "word",
+        "image": "/images/informatica/word.png",
+        "price": "$280",
+        "product_type": "software",
+        "deleted": false
+    },
+    {
+        "id": 19,
+        "name": "computadora",
+        "image": "/images/accesorios/computadoras/computadora1.png",
+        "price": "$240.000",
+        "product_type": "accesories",
+        "deleted": false
+    },
+    {
+        "id": 6,
+        "name": "huawei",
+        "image": "/images/celulares/huawei2.png",
+        "price": "$75.000",
+        "product_type": "phones",
+        "deleted": false
+    },
+    {
+        "id": 12,
+        "name": "excel",
+        "image": "/images/informatica/excel.png",
+        "price": "$280",
+        "product_type": "software",
+        "deleted": false
+    },
+    {
+        "id": 5,
+        "name": "huawei",
+        "image": "/images/celulares/huawei1.png",
+        "price": "$62.000",
+        "product_type": "phones",
+        "deleted": false
+    },
+    {
+        "id": 5,
+        "name": "huawei",
+        "image": "/images/celulares/huawei1.png",
+        "price": "$62.000",
+        "product_type": "phones",
+        "deleted": false
+    },
+    {
+        "product_type": "software",
+        "name": "SoftwareXX",
+        "price": "32423423",
+        "description": "asd",
+        "image": "/images/1689351591857-software-1-e1550080087611-800x400.jpeg",
+        "id": 35,
+        "deleted": false
+    },
+    {
+        "id": 1,
+        "name": "xiaomi1",
+        "image": "/images/celulares/xiaomi1.png",
+        "price": "$70.000",
+        "product_type": "phones",
+        "deleted": false
+    },
+    {
+        "id": 1,
+        "name": "xiaomi1",
+        "image": "/images/celulares/xiaomi1.png",
+        "price": "$70.000",
+        "product_type": "phones",
+        "deleted": false
+    },
+    {
+        "id": 1,
+        "name": "xiaomi1",
+        "image": "/images/celulares/xiaomi1.png",
+        "price": "$70.000",
+        "product_type": "phones",
+        "deleted": false
+    }
+]

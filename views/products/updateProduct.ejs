@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="/css/product/style-carrito.css">
+
+<%- include('../partials/header') %>
+
+<H1>Actualizar Producto</H1>
+
+<form action="/products/<%= products.id %>/update?_method=put" method="post">
+
+    <fieldset>
+        <legend>Elige una Categoria</legend>
+        <label><input type="radio" name="product_type" value="phones">phones</label>
+        <label><input type="radio" name="product_type" value="software">software</label>
+        <label><input type="radio" name="product_type" value="accesories">accesories</label>
+        <label><input type="radio" name="product_type" value="printer">printer</label>
+    </fieldset><br>
+    <fieldset>
+        <legend>Ingresa la Infomación</legend>
+        <label for="name">Nombre: </label><input type="text" name="name" value="<%= products.name %>"><br>
+        <input type="text" name="image" value="<%= products.image %>"><br>
+
+        <label for="img">Imagen</label><input type="file" name="img" id="img"><br>
+
+        <label for="price">Precio: </label><input type="text" name="price" value="<%= products.price %>"><br>
+        <label for="description">Descripción: </label><input type="text" name="description" value="<%= products.descripcion %>"><br>
+    </fieldset><br>
+    <input type="submit" value="Guardar cambios">
+</form>

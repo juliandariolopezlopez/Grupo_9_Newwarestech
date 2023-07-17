@@ -1,0 +1,339 @@
+[
+    {
+        "id": 1,
+        "firstName": "Alexei",
+        "lastName": "Fadell",
+        "email": "afadell0@e-recht24.de",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id ": 2,
+        "firstName": "Lois",
+        "lastName": "Gellan",
+        "email": "lgellan1@wisc.edu",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 3,
+        "firstName ": "Piper",
+        "lastName": "Butterfint",
+        "email": "pbutterfint2@usgs.gov",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 4,
+        "firstName": "Lorettalorna",
+        "lastName": "Milverton",
+        "email": "lmilverton3@liveinternet.ru",
+        "category": "Administrador",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 5,
+        "firstName": "Terrell",
+        "lastName": "Isaak",
+        "email": "tisaak4@samsung.com",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        " id": 6,
+        "firstName": "Clark",
+        "lastName": "Dixon",
+        "email": "cdixon5@macromedia.com",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 7,
+        " firstName": "Grissel",
+        "lastName": "Sichardt",
+        "email": "gsichardt6@washingtonpost.com",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 8,
+        "firstName": "Johnath",
+        "lastName": "Ferrarin",
+        "email": "jferrarin7@behance.net",
+        "category": "Administrador",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 9,
+        "firstName": "Dael",
+        "lastName": "Seamarke",
+        "email": "dseamarke8@phpbb.com",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 10,
+        "firstName": "Fredric",
+        "lastName": "Tellett",
+        "email": "ftellett9@nhs.uk",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 11,
+        "firstName": "Del",
+        "lastName": "Ojeda",
+        "email": "dojedaa@instagram.com",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 12,
+        "firstName": "Arlen ",
+        "lastName": "Troman",
+        "email": "atromanb@dyndns.org",
+        "category": "Administrador",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 13,
+        "firstName": "Christy",
+        "lastName": "Ditchburn",
+        "email": "cditchburnc@blogs.com",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        " id": 14,
+        "firstName": "Lyman",
+        "lastName": "Ronaldson",
+        "email": "lronaldsond@seattletimes.com",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 15,
+        " firstName": "Dulcy",
+        "lastName": "Nottle",
+        "email": "dnottlee@soup.io",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 16,
+        "firstName": "Berny",
+        "lastName": "Moro",
+        "email": "bmorof@walmart.com",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 17,
+        "firstName": "Eberto",
+        "lastName": "Casson",
+        "email": "ecassong@pen.io",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        " id": 18,
+        "firstName": "Susanetta",
+        "lastName": "Spaice",
+        "email": "sspaiceh@parallels.com",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 19,
+        " firstName": "Cooper",
+        "lastName": "Gentric",
+        "email": "cgentrici@ucoz.com",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 20,
+        "firstName": "Oralla",
+        "lastName": "Petersen",
+        "email": "opetersenj@twitter.com",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 21,
+        "firstName": "Guendolen",
+        "lastName": "Carbonell",
+        "email": "gcarbonellk@marketwatch.com",
+        "category": "Administrador",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        " id": 22,
+        "firstName": "Tripp",
+        "lastName": "Philipet",
+        "email": "tphilipetl@miitbeian.gov.cn",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 23,
+        "firstName": "Tuckie",
+        "lastName": "Potteril",
+        "email": "tpotterilm@yellowpages.com",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 24,
+        "firstName": " Richmond",
+        "lastName": "Clift",
+        "email": "rcliftn@answers.com",
+        "category": "Cliente",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 25,
+        "firstName": "Carce",
+        "lastName": "Hindenburg",
+        "email": "chindenburg@economist.com",
+        "category": "Cliente ",
+        "deleted": false,
+        "password": "password",
+        "image": "/images/users/user.png"
+    },
+    {
+        "id": 26,
+        "firstName": "bella2",
+        "lastName": "castillo2",
+        "email": "bella2@gmail.com",
+        "category": "Patrona ",
+        "deleted": false,
+        "image": "/images/users/user-1686161359995-Foto_2023-05-20_075030.jpg",
+        "password": "1234"
+    },
+    {
+        "id": 27,
+        "firstName": "Divian",
+        "lastName": "castillo2",
+        "email": "bella2@gmail.com",
+        "category": "Patrona ",
+        "deleted": false,
+        "image": "/images/users/user-1686164731085-Sarani mukoe Plus Ultra.jpg",
+        "password": "1234"
+    },
+    {
+        "nombre": "nombre",
+        "apellido": "apellido",
+        "email": "nombreapellidoo@hotmail.com",
+        "password": "$2a$10$YpWr4nNouzTFfrFxf/hPgOfrs.JIDzP9miSwe9i1Ctxz5OL9WYyoy",
+        "confirmpassword": "$2a$10$qmRss6juYhh5lm1UQzSbrurEgk7y/eSX5t/ok0yFHEJyMKdsnS7/.",
+        "image": "",
+        "id": 29,
+        "idU": "60218b6d-1214-4a3a-a512-fafcebcbad92",
+        "deleted": false
+    },
+    {
+        "nombre": "nombre",
+        "apellido": "apellido",
+        "email": "nombreapellido@hotmail.com",
+        "password": "$2a$10$tbz02si85pKyBSRrOtuI6uKafNMBY7RBPzIRkXWVgDa.z1ZI88YGi",
+        "confirmpassword": "$2a$10$CvV7E338af17R6DukU5AWuE4aXA6BrINuCZ75aUjMNlS2RQPbzsgu",
+        "image": "",
+        "id": 30,
+        "idU": "1cd7e15e-43c8-401e-bc7d-8aa02a7e72bb",
+        "deleted": false
+    },
+    {
+        "nombre": "nombre",
+        "apellido": "apellido",
+        "email": "nombreapellid@hotmail.com",
+        "password": "$2a$10$HUSjMGJxyOfF3/LnmQmhzu9NvmcCLPT15cM8eegKIWaRE13SlgpeS",
+        "confirmpassword": "$2a$10$huvdpx9G5buyc661Uyfy/eRBTQNFx87WL9nvEUQcD2SAslvWbFbwC",
+        "image": "",
+        "id": 31,
+        "idU": "e9b16b78-5250-4df7-88ac-7228831059c1",
+        "deleted": false
+    },
+    {
+        "nombre": "nombre",
+        "apellido": "Gomez",
+        "email": "nombregomez@hotmail.com",
+        "password": "$2a$10$XqR7cP.ix7RoRcVUqyJkhu.eI5qvl7Naen9ZWUEy2srE6xylguj9K",
+        "confirmpassword": "$2a$10$l/u5LevI64dKIBkNC1fW3.Z3ATDcTIPhPddICZfxeCF7wy9RUVU52",
+        "image": "",
+        "id": 32,
+        "idU": "02d9154e-67b3-4267-814d-affa2f7f7b6a",
+        "deleted": false
+    },
+    {
+        "nombre": "Pedro",
+        "apellido": "Gomez",
+        "email": "pedrogomez@hotmail.com",
+        "password": "$2a$10$fsO8kRQf9z.gC4V6kqUOGelpyeccgq9NAeim/0RqLWFa76ybLRWfy",
+        "confirmpassword": "$2a$10$zukFwXhJisZsA/RPvlUktu6BF6JkBLv9JfnQx4nKarguQI3rMfU3i",
+        "image": "",
+        "robot": "on",
+        "id": 33,
+        "idU": "c1808ee1-0c26-47f3-abb5-1c9700e06ea2",
+        "deleted": false
+    },
+    {
+        "nombre": "Felipe",
+        "apellido": "Fueres",
+        "email": "felipefueres@hotmail.com",
+        "password": "$2a$10$zUcW7kQmbRikWo1crGDNf.rpPVfTKL2ChFM2pmN7penrId2EugCdi",
+        "confirmpassword": "$2a$10$7aXKlSytgzly6uBRv4rv4eg/hBhX0NZ0n15Qaxh0UUcuoMyT2uD6G",
+        "image": "",
+        "id": 34,
+        "idU": "8579a2e9-dc3a-4139-bcfb-0ba6875414b9",
+        "deleted": false
+    }
+]
