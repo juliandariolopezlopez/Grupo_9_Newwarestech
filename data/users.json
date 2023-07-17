@@ -335,5 +335,17 @@
         "id": 34,
         "idU": "8579a2e9-dc3a-4139-bcfb-0ba6875414b9",
         "deleted": false
+    },
+    {
+        "nombre": "Julián Darío",
+        "apellido": "López López",
+        "email": "juliandariolopeztulua@gmail.com",
+        "password": "$2a$10$zP3fIHSmt5qpnXb4geKpZ.vZGfYGXCvO.vGJc1nF90PerJn51jF/6",
+        "confirmpassword": "$2a$10$adtVFMPKnb3u9IHwaJzt9Otqeiavg3Cc.c1jl7O/aYvDCIT94Sgw2",
+        "image": "",
+        "robot": "on",
+        "id": 35,
+        "idU": "b6bd8840-6411-4216-bd39-5ecd2552e795",
+        "deleted": false
     }
 ]

@@ -52,3 +52,10 @@
 -Editamos Retro.MD.
 -Completamos weekly.
 
+
+**17 de Junio**
+-Se creó nuevo repositorio del proyecto integrador.
+-Se creó nuevo espacio de trabajo en trello. 
+-Nuevo integrante del proyecto Miguel Abentín. 
+-Se avanza en el proyecto con los campos atrasados. 
+
