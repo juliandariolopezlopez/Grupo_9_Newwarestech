@@ -11,9 +11,11 @@
         <a href="/products/productCart"><i class="fa-solid fa-cart-shopping"></i> </a>
         <a href="/users/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
       <% }else{ %>
-
-        <a href="/users/login"> <i class="fa-solid fa-circle-user"></i></a>
-        <a href="/users/register"><i class="fa-solid fa-user-plus"></i></a> 
+        <% if (locals.adminIsLogged) { %>
+          <% }else{ %>
+            <a href="/users/login"> <i class="fa-solid fa-circle-user"></i></a>
+            <a href="/users/register"><i class="fa-solid fa-user-plus"></i></a> 
+            <% } %>
       <% } %>
 
     </div>

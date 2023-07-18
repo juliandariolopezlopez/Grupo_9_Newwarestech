@@ -49,7 +49,7 @@ const userController = {
                 delete userInLogin.id;
 
                 if(req.body.rememberme){    
-                    res.cookie('email', userInLogin.email,{ maxAge:(1000*60)*60*24});
+                    res.cookie('emailUser', userInLogin.email,{ maxAge:(1000*60)*60*24});
                 }
                 
                 req.session.userLogged = userInLogin;
