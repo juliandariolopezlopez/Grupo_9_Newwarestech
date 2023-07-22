@@ -4,8 +4,8 @@
 
 
             <div style ="color: red;" style="font-size: small;">
-
-                <%if(errors.length > 0){%>
+                
+                <% if (errors.length > 0) { %>
                     <h2>Por favor verifique el formulario a llenar:</h2>
                     <ul>
                         <% errors.forEach(elemento=>{%>
@@ -24,19 +24,19 @@
                 <legend>Elige una Categoria</legend>
                 
                 <div>
-                    <label for="product_type">phones</label>
+                    <label for="product_type">Phones</label>
                     <input type="radio" name="product_type" id="product_type" value="phones">
                 </div>
                 <div>
-                    <label for="product_type">software</label>
+                    <label for="product_type">Software</label>
                     <input type="radio" name="product_type" id="product_type" value="software">
                 </div>
                 <div>
-                    <label for="product_type">accesories</label>
+                    <label for="product_type">Accesories</label>
                     <input type="radio" name="product_type" id="product_type"  value="accesories">
                 </div>
                 <div>
-                    <label for="product_type">printer</label>
+                    <label for="product_type">Printer</label>
                     <input type="radio" name="product_type" id="product_type" value="printer">
                 </div>
             </fieldset><br>
@@ -44,19 +44,19 @@
                 <legend>Ingresa la Infomación</legend>
                 <div>
                     <label for="name">Nombre</label>
-                    <input type="text" name="name" id="name" placeholder="nombre">
+                    <input type="text" name="name" id="name" placeholder="nombre" value="<%= values.name %>">
                 </div>
                 <div>
                     <label for="img">Imagen</label>
-                    <input type="file" name="img" id="img">
+                    <input type="file" name="img" id="img" value="<%= values.img %>">
                 </div>
                 <div>
                     <label for="price">Price</label>
-                    <input type="text" name="price" id="price" placeholder="precio">
+                    <input type="text" name="price" id="price" placeholder="precio" value="<%= values.price %>">
                 </div>
                 <div>
                     <label for="description">Descripcion</label>
-                    <input type="text" name="description" id="description" placeholder="descripcion">
+                    <input type="text" name="description" id="description" placeholder="descripcion" value="<%= values.description %>">
                 </div>
             </fieldset>
             <div>

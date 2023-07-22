@@ -61,7 +61,8 @@ router.post('/:id/productCart', productController.addCart);
 router.get('/createProduct', productController.createProduct); 
 
 //@POST /products/createProduct
-router.post('/createProduct', validateAddProduct.validateCreateProduct, upload.single('img'), productController.addProduct); 
+router.post('/createProduct',[ validateAddProduct.validateCreateProduct, upload.single('img')], productController.addProduct); 
+
 
 //@GET /products/:id/productDetail
 router.get('/:id/productDetail', productController.getDetail); 

@@ -171,7 +171,7 @@ const userController = {
 
     getLogout : ( req , res ) =>{
         
-        res.clearCookie('email');
+        res.clearCookie('emailUser');
         req.session.destroy();
         return res.redirect('/');
     },

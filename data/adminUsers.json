@@ -49,5 +49,38 @@
         "id": 5,
         "idU": "3b79e3be-b794-4837-8147-086fad6083d8",
         "deleted": false
+    },
+    {
+        "nombre": "",
+        "apellido": "",
+        "email": "",
+        "password": "$2a$10$ar/hz1Xqd06ra/a8uzeC4ecN9.nJn344fmZJmfxnYo/kgJwtnQB8O",
+        "confirmpassword": "$2a$10$6bn9yhIPjNprB6kJG/ab2e4.GnCqdQOCAy0gNzpB8iLd6zyDugSru",
+        "image": "",
+        "id": 6,
+        "idU": "4d8a8242-c0ec-4391-bf82-6f48cf019983",
+        "deleted": false
+    },
+    {
+        "nombre": "jose",
+        "apellido": "lapapa",
+        "email": "jodelapapa@hotmail.com",
+        "password": "$2a$10$CratwyP43L27RRnI4FENpOOR79yIIJSXb8kQgAUZjN0FjlF76Gi0i",
+        "confirmpassword": "$2a$10$W8CKHCpn.hJzw.AYsXFiGOcRdPrtGy68ZHWqaR.G1TEda8vBVGKp2",
+        "image": "",
+        "id": 7,
+        "idU": "df170dde-3897-43a5-95f1-4158bd516d14",
+        "deleted": false
+    },
+    {
+        "nombre": "jose",
+        "apellido": "lapapa",
+        "email": "joselapapa@hotmail.com",
+        "password": "$2a$10$Kqe7FoN8fit/1a.wpvpbguFuCNDMSufDF2h0J2A9lbC7oeBX3Br7m",
+        "confirmpassword": "$2a$10$GTPddsZlutSzYM.4qKasW.rAYzpEOGHwBWSQwYdK1S8QgGoYCa6A6",
+        "image": "",
+        "id": 8,
+        "idU": "16026e62-a450-4ac2-91b2-bbf118e28ed6",
+        "deleted": false
     }
 ]

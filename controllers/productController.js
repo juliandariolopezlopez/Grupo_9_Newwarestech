@@ -81,7 +81,8 @@ const productController = {
     createProduct: (req,res)=>{
 
         res.render('createProduct' , {
-            errors:[]
+            errors:[],
+            values:[]
         });
 
     },
@@ -89,24 +90,26 @@ const productController = {
     addProduct: (req,res)=>{ 
 
         /* const body = '/createProduct'; */
-        const newProduct = req.body;
-
+        
         const validations = expressValidator.validationResult(req);
-
+        
         if(validations.errors.length > 0){
             
             res.render('createProduct', {
 
                 errors:validations.errors,
-
+                values:req.body
             });
+
         }
 
+            const newProduct = req.body;
+            
             newProduct.image = '/images/' + req.file.filename;
            
             productModel.createOne(newProduct);
             
-            res.redirect('productList')
+            return res.redirect('/products/:id/productDetail');
         
         
         /*         if(req.file){

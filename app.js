@@ -42,9 +42,9 @@ app.use(session({
     resave: false,
     saveUninitialized:false
 }));
+app.use(cookieParser());
 app.use(userLoggedNavMiddleware);
 app.use(userAdminLoggedNavMiddleware);
-app.use(cookieParser());
 
 
 

@@ -16,11 +16,11 @@ const controllers = {
     getAdmin: (req,res)=>{
 
       const usersAdmin = userAdminModel.findComplete(false);
-   
+  
         res.render('admin' ,{
-         usersAdmin,
+         usersAdmin:usersAdmin,
          errors:[],
-         values:[]
+         values:[],
       });
      },
 
@@ -36,7 +36,7 @@ const controllers = {
           return res.render('admin',{
               errors:validation.errors,
               values:req.body,
-              usersAdmin
+              usersAdmin:usersAdmin
           });
       };
 
@@ -77,7 +77,6 @@ const controllers = {
               msg:'Contraseña incorrecta'
           }],
           values:req.body,
-          usersAdmin
       });
   };
 }
