@@ -16,11 +16,14 @@ const controllers = {
     getAdmin: (req,res)=>{
 
       const usersAdmin = userAdminModel.findComplete(false);
+
+      const session = req.session.userAdminLogged;
   
         res.render('admin' ,{
          usersAdmin:usersAdmin,
          errors:[],
          values:[],
+         session:session
       });
      },
 
@@ -63,7 +66,7 @@ const controllers = {
           delete userAdminInLogin.id;
 
           if(req.body.rememberme){    
-              res.cookie('emailAdmin', userAdminInLogin.email,{ maxAge:(1000*60)*60*24});
+              res.cookie('emailAdmin', userAdminInLogin.email,{ maxAge:(1000*60)/* *60*24 */});
           }
           
           req.session.userAdminLogged = userAdminInLogin;
@@ -143,31 +146,49 @@ const controllers = {
 
      },
 
+     // Perfil del ADMINISTRADOR
+
+     getAdminUserProfile:(req,res)=>{
+ 
+        const id = Number(req.query.id);
+
+       const userAdmin = userAdminModel.findByField('id',id)
+      
+       res.render('adminUserProfile', {
+
+        userAdmin:userAdmin
+          
+       })
+     
+    },
+
      // UPDATE del ADMINISTRADOR
 
     getUserAdminToUpdate:(req,res)=>{
 
-      const id = Number(req.params.id);
+      const userAdmin = userAdminModel.findByField('email',req.session.userAdminLogged.email)
 
-      const users = userAdminModel.findByid(id)
-
-      res.render('updateAdminUser', {
-         users
+      res.render('updateAdminUsers', {
+         userAdmin:userAdmin
       })
 
   },
+
   // PUT del ADMINISTRADOR
+  
   putUserAdminUpdate: (req,res)=>{
 
-          const id = Number(req.params.id);
+        const userAdmin = userAdminModel.findByField('email',req.session.userAdminLogged.email)
 
-          newData = req.body;
+        const id = userAdmin.id;
 
-          newData.image = '/images/users/' + req.file.filename;
+        const newAdminData = req.body;
 
-          let users = userAdminModel.updateByid(id, newData)
+        /* newData.image = '/images/users/' + req.file.filename; */
 
-          res.redirect('/admin', {users})
+        userAdminModel.updateByid(id, newAdminData)
+
+        res.redirect('/admin')
   },
 
   // Delete del ADMINISTRADOR

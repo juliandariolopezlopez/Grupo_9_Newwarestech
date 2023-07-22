@@ -5,6 +5,9 @@ const router = express.Router();
 const validationsUser = require('../middlewares/validationsUser');
 const validationsUserLogin = require('../middlewares/validationUserLogin');
 
+const authMiddleware = require('../middlewares/authMiddleware');
+const guestMiddleware = require('../middlewares/guestMiddleware');
+
 const userAdminLoggedNavMiddleware = require('../middlewares/userAdminLoggedNavMiddleware');
 
 //@get /
@@ -25,17 +28,25 @@ router.get('/adminregister', mainControllers.getAdminRegister);
 router.post('/adminregister', validationsUser.validateCreateUser ,mainControllers.postAdminRegister);
 
 
-//@get /update/admin
-router.get('/updateadminuser', mainControllers.getUserAdminToUpdate);
+
+//@get /adminuserprofile       
+router.get('/adminuserprofile/:userAdmin', mainControllers.getAdminUserProfile);
+
+
+
+//@get /update/admin        
+router.get('/updateadminuser/:userAdmin/update', mainControllers.getUserAdminToUpdate);
+
 
 //@put /update/admin
-router.put('/updateadminuser/:id/update', mainControllers.putUserAdminUpdate);
+router.put('/updateadminuser/:userAdmin/update', mainControllers.putUserAdminUpdate);
+
 
 //@delete
+/* 
+router.delete ('/updateadminuser/:userAdmin/delete' , mainControllers.deleteUserAdmin)
 
-router.delete ('/updateadminuser/:id/delete' , mainControllers.deleteUserAdmin)
-
-
+ */
 
 router.post ('/adminlogout' , mainControllers.amdminLogOut)
 

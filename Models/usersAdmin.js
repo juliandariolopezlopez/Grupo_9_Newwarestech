@@ -1,6 +1,7 @@
 const fs = require('fs') 
 const path = require('path');
 const uuid = require('uuid');
+const { findAll } = require('./product');
 
 const userAdminModel = {
 
@@ -22,22 +23,32 @@ const userAdminModel = {
         return users;
     },
 
+    findAll: function(){
+
+         const allAdminUsersJson = fs.readFileSync(path.join(__dirname, this.route), 'utf-8');
+
+        let adminUsers = JSON.parse(allAdminUsersJson);
+
+        return adminUsers;
+
+    },
+
     //Traer un user según su ID
     findByid: function(id){
 
-        let users = this.findComplete(false);
+        let users = this.findAll();
 
-        users = users.find(users => users.id === id); 
+        let searched = users.find(elemento => elemento.id === id); 
 
-        if(!users){ //en caso que no se encuentre el id a buscar
+        if(!searched){ //en caso que no se encuentre el id a buscar
             users = null;
         }
-        return users;
+        return searched;
     },
 
     findByField: function(field , text){
 
-        let users =this.findComplete(false);
+        let users =this.findAll();
 
         let userFound = users.find(elemento=> elemento[field]===text);
         return userFound;
@@ -46,18 +57,17 @@ const userAdminModel = {
     //Editar un user
     updateByid: function(id, newData){
 
-        let users = this.findComplete(false);
+        const users = this.findAll();
 
-        const indice = users.indexOf( elemento=> elemento.id === id); //Buscar indice del user
+        const user = users.find(elemento=> elemento.id === id)
+
+        const indice = users.indexOf(user); //Buscar indice del user
         
         users[indice]={
-            ...users,
-            firstName : newData.firstName,
-            lastName : newData.lastName,
-            email : newData.email,
-            category : newData.category,
-            password : newData.password,
-            image : newData.image,
+            ...user,
+
+            nombre: newData.nombre,
+            apellido: newData.apellido,
         }
 
         const usersJSON = JSON.stringify(users); // Convertir de JS a JSON

@@ -24,7 +24,7 @@
                 <h4>Login Admin</h2>
                     <% }else{ %>
                         <h4>Login Admin</h2>
-                            <p style="color: green;">En sesion </p>
+                            <p style="color: green;">En sesion de <%= session.nombre %></p>
                             <% } %>
 
                                 <div style="color: red;">
@@ -94,16 +94,25 @@
             <br><br>
 
             <h3>USUARIOS ADMINISTRADORES</h3>
+
             <% usersAdmin.forEach(elemento=>{%>
-                <br>
-                <a href="">
-                    <%= elemento.email %>
-                </a>
-                <br>
-                <br>
+                <%if(elemento.email === session.email){%>
+                    <br>
+                    <a href="/updateadminuser/<%= elemento.id %>/update"><%= elemento.email %></a>
+                    <% } %>
                 <%});%>
-                    <% }%>
-                        <%- include('../partials/footer') %>
+                <br>
+                <% usersAdmin.forEach(elemento=>{%>
+                    <br>
+                    <%= elemento.email %>
+                    <a href="/adminuserprofile/<%= elemento.id %>?id=<%= elemento.id %>">Ver perfil</a>
+                    <br>
+                    <%}) %>
+                    <br>
+                    <br>
+                    
+                    <%}%>
+                    <%- include('../partials/footer') %>
 </body>
 
 </html>

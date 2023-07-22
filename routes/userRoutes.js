@@ -36,14 +36,15 @@ router.post ('/register', validationsUser.validateCreateUser , userController.po
 //@GET /users/userList
 router.get('/userList' ,userController.getuserList);
 
+
 //@GET /users/:id/update
-router.get('/:id/updateUser', authMiddleware ,userController.getuserToUpdate); 
+router.get('/:user/updateUser', authMiddleware ,userController.getuserToUpdate); 
 
 //@put /users/:id/put  formulario para update
-router.put('/:id/put',[ upload.single('image'), authMiddleware ], userController.userUpdate); 
+router.put('/:user/put',[ upload.single('image'), authMiddleware ], userController.userUpdate); 
 
 //@post /users/:id/deleteUser  funcion de  update
-router.get('/:id/deleteUser', authMiddleware ,userController.userDelete); 
+router.get('/:user/deleteUser', authMiddleware ,userController.userDelete); 
 
 
 //@get /logout

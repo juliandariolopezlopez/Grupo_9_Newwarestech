@@ -54,6 +54,13 @@ app.use(mainRoutes);
 app.use('/users', userRoutes);
 app.use('/products', productRoutes); ///products es un prefijo que se usa en el @get
 
+
+
+app.use((req,res,next)=>{
+
+    res.render('404');
+});
+
 //Levantando el servidor 
 app.listen(3005, ()=>{
     console.log("Servidor corriendo http://localhost:3005");
