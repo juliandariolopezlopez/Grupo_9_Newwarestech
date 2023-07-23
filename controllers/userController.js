@@ -5,6 +5,7 @@ const userModel = require('../models/users');
 const expressValidator = require('express-validator');
 
 const bcryptjs = require('bcryptjs');
+const session = require('express-session');
 
 const userController = {
 
@@ -172,6 +173,7 @@ const userController = {
     getLogout : ( req , res ) =>{
         
         res.clearCookie('emailUser');
+        res.clearCookie()
         req.session.destroy();
         return res.redirect('/');
     },

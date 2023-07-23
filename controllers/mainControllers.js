@@ -207,6 +207,7 @@ const controllers = {
    amdminLogOut:(req,res)=>{
 
       res.clearCookie('emailAdmin');
+      res.clearCookie();
       req.session.destroy();
       return res.redirect('/admin');
 
