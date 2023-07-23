@@ -28,7 +28,7 @@ router.post('/login' , validationsUserLogin.validateLogInUser , userController.p
 router.get('/register', guestMiddleware , userController.getRegister);
 
 //@Post /users/usersList
-router.post ('/register', validationsUser.validateCreateUser , userController.postRegister );
+router.post ('/register',[ upload.single('image'), validationsUser.validateCreateUser ], userController.postRegister );
 
 
 //Rutas de user
@@ -37,15 +37,19 @@ router.post ('/register', validationsUser.validateCreateUser , userController.po
 router.get('/userList' ,userController.getuserList);
 
 
+//@get /users/userprofile
+router.get('/userprofile',userController.getUserProfile);
+
+
 //@GET /users/:id/update
-router.get('/:user/updateUser', authMiddleware ,userController.getuserToUpdate); 
+router.get('/:user/updateuser', authMiddleware ,userController.getuserToUpdate); 
 
 //@put /users/:id/put  formulario para update
 router.put('/:user/put',[ upload.single('image'), authMiddleware ], userController.userUpdate); 
 
-//@post /users/:id/deleteUser  funcion de  update
-router.get('/:user/deleteUser', authMiddleware ,userController.userDelete); 
 
+//@post /users/:id/deleteUser  funcion de  update
+router.delete('/updateuser/:user/delete', authMiddleware ,userController.deleteUser); 
 
 //@get /logout
 router.get ( '/logout' , userController.getLogout );

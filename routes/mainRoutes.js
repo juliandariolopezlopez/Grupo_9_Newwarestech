@@ -33,20 +33,18 @@ router.post('/adminregister', validationsUser.validateCreateUser ,mainController
 router.get('/adminuserprofile/:userAdmin', mainControllers.getAdminUserProfile);
 
 
-
 //@get /update/admin        
-router.get('/updateadminuser/:userAdmin/update', mainControllers.getUserAdminToUpdate);
-
+router.get('/updateadminuser/:userAdmin', mainControllers.getUserAdminToUpdate);
 
 //@put /update/admin
 router.put('/updateadminuser/:userAdmin/update', mainControllers.putUserAdminUpdate);
 
 
 //@delete
-/* 
+
 router.delete ('/updateadminuser/:userAdmin/delete' , mainControllers.deleteUserAdmin)
 
- */
+
 
 router.post ('/adminlogout' , mainControllers.amdminLogOut)
 

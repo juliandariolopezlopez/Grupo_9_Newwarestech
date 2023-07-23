@@ -7,6 +7,7 @@
     <div class="iconos-header">
 
       <% if (locals.isLogged || locals.adminIsLogged) { %>
+       <a href="/users/userprofile"><i class="fa-solid fa-user"></i></a>
         <a href="/products/productCart"><i class="fa-solid fa-cart-shopping"></i> </a>
         <% }%>
       <% if (locals.isLogged && !locals.adminIsLogged) { %>

@@ -66,7 +66,7 @@ const controllers = {
           delete userAdminInLogin.id;
 
           if(req.body.rememberme){    
-              res.cookie('emailAdmin', userAdminInLogin.email,{ maxAge:(1000*60)/* *60*24 */});
+              res.cookie('emailAdmin', userAdminInLogin.email,{ maxAge:(1000*60) *60*24 });
           }
           
           req.session.userAdminLogged = userAdminInLogin;
@@ -166,7 +166,7 @@ const controllers = {
 
     getUserAdminToUpdate:(req,res)=>{
 
-      const userAdmin = userAdminModel.findByField('email',req.session.userAdminLogged.email)
+      const userAdmin = userAdminModel.findByField('email',req.cookies.emailAdmin)
 
       res.render('updateAdminUsers', {
          userAdmin:userAdmin
@@ -178,7 +178,7 @@ const controllers = {
   
   putUserAdminUpdate: (req,res)=>{
 
-        const userAdmin = userAdminModel.findByField('email',req.session.userAdminLogged.email)
+        const userAdmin = userAdminModel.findByField('email',req.cookies.emailAdmin)
 
         const id = userAdmin.id;
 
@@ -192,21 +192,26 @@ const controllers = {
   },
 
   // Delete del ADMINISTRADOR
+
   deleteUserAdmin:(req,res)=>{
 
-      const id = Number(req.params.id);
+      const id = Number(req.params.userAdmin);
 
-      let users = userAdminModel.deleteByid(id);
+      userAdminModel.deleteByid(id);
 
-      users = userAdminModel.findComplete(false)
+   /*    users = userAdminModel.findComplete(false)
+ */
+      delete req.session.userAdminLogged
+      res.clearCookie('emailAdmin');
 
-      res.redirect('/admin', {users});
+      res.redirect('/admin');
 
   },
   
    amdminLogOut:(req,res)=>{
 
       res.clearCookie('emailAdmin');
+      res.clearCookie('emailUser');
       res.clearCookie();
       req.session.destroy();
       return res.redirect('/admin');

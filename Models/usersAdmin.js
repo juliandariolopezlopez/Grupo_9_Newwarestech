@@ -55,7 +55,7 @@ const userAdminModel = {
     },
 
     //Editar un user
-    updateByid: function(id, newData){
+    updateByid: function(id, newAdminData){
 
         const users = this.findAll();
 
@@ -64,10 +64,12 @@ const userAdminModel = {
         const indice = users.indexOf(user); //Buscar indice del user
         
         users[indice]={
+            
             ...user,
+            email: users[indice].email,
 
-            nombre: newData.nombre,
-            apellido: newData.apellido,
+            apellido: newAdminData.apellido,
+            nombre: newAdminData.nombre
         }
 
         const usersJSON = JSON.stringify(users); // Convertir de JS a JSON
@@ -101,11 +103,12 @@ const userAdminModel = {
 
     deleteByid: function(id){
 
-        let users = this.findComplete(false);
+        let users = this.findAll();
 
-        const indice = users.indexOf( elemento => elemento.id === id); //Buscar indice del producto
-        users[indice].deleted = true;
+        users = users.filter(elemento => elemento.id !== id)
+        
         const usersJSON = JSON.stringify(users); // Convertir de JS a JSON
+        
         fs.writeFileSync(path.join(__dirname, this.route), usersJSON);
 
         return users;

@@ -8,7 +8,73 @@ const bcryptjs = require('bcryptjs');
 const session = require('express-session');
 
 const userController = {
+    
+    getRegister:(req,res)=>{
+        res.render('register',{
+    
+            errors:[],
+            values:[]
+        });
+    },
+    
+    postRegister:(req,res)=>{
+    
+        const validation = expressValidator.validationResult(req);
+    
+        if(validation.errors.length > 0){
+    
+            return res.render('register' ,{
+    
+                errors: validation.errors,
+                values: req.body
+    
+            })
+    
+        }
+    
+        const passwordEquality = req.body.password === req.body.confirmpassword;
+    
+        if(!passwordEquality){
+    
+            return res.render('register',{
+                errors:[{
+                 msg:"La contraseña debe coincidir"   
+                }],
+                values:req.body,
+            })
+        }
+    
+        const usuarioEnBD = userModel.findByField('email',req.body.email);
+    
+        if(usuarioEnBD){
+            return res.render('register',{
+                errors:[{
+                    msg: "El mail ya existe, elija otro"
+                }],
+                values: req.body
+            })
+        }
+        
+            const newUser= {
+                
+                ...req.body,
+                password: bcryptjs.hashSync(req.body.password,10),
+                confirmpassword: bcryptjs.hashSync(req.body.confirmpassword,10),    
+                
+            }
 
+            if(!newUser.image){
+
+                newUser.image = '/images/users/user.png';
+            }else{
+                newUser.image = '/images/users/' + req.file.filename;
+            }
+    
+            userModel.createOne(newUser);
+    
+           return res.redirect('/users/login');
+    
+    },
     getLogin: (req,res)=>{
         res.render('login',{
             errors:[],
@@ -76,104 +142,66 @@ const userController = {
         res.render('userList', {users});
     },
 
-    getRegister:(req,res)=>{
-        res.render('register',{
 
-            errors:[],
-            values:[]
+    getUserProfile:(req,res)=>{
+
+        const user = userModel.findByField('email',req.session.userLogged.email)
+     
+        res.render('userProfile',{
+            user:user
         });
     },
-    
-    postRegister:(req,res)=>{
 
-        const validation = expressValidator.validationResult(req);
-
-        if(validation.errors.length > 0){
-
-            return res.render('register' ,{
-
-                errors: validation.errors,
-                values: req.body
-
-            })
-
-        }
-
-        const passwordEquality = req.body.password === req.body.confirmpassword;
-
-        if(!passwordEquality){
-
-            return res.render('register',{
-                errors:[{
-                 msg:"La contraseña debe coincidir"   
-                }],
-                values:req.body,
-            })
-        }
-
-        const usuarioEnBD = userModel.findByField('email',req.body.email);
-
-        if(usuarioEnBD){
-            return res.render('register',{
-                errors:[{
-                    msg: "El mail ya existe, elija otro"
-                }],
-                values: req.body
-            })
-        }
-        
-            const newUser= {
-                
-                ...req.body,
-                password: bcryptjs.hashSync(req.body.password,10),
-                confirmpassword: bcryptjs.hashSync(req.body.confirmpassword,10)
-            }
-    
-            userModel.createOne(newUser);
-    
-           return res.redirect('/users/login');
-
-    },
 
     getuserToUpdate:(req,res)=>{
 
-        const id = Number(req.params.id);
+        const id = Number(req.params.user);
 
         const users = userModel.findByid(id)
 
-        res.render('updateUser', {users})
+        res.render('updateUser', {users:users})
 
     },
 
     userUpdate: (req,res)=>{
 
-            const id = Number(req.params.id);
+            const id = Number(req.params.user);
 
             newData = req.body;
 
-            newData.image = '/images/users/' + req.file.filename;
+            if(!newData.image){
 
-            let users = userModel.updateByid(id, newData)
+                newData.image = '/images/users/user.png';
+            }else{
 
-            res.render('userList', {users})
+                newData.image = '/images/users/' + req.file.filename;
+            }
+
+            userModel.updateByid(id, newData)
+
+            res.redirect('/users/userprofile')
     },
 
-    userDelete:(req,res)=>{
+    deleteUser:(req,res)=>{
 
-        const id = Number(req.params.id);
+        const id = Number(req.params.user);
+       
+        userModel.deleteByid(id);
 
-        let users = userModel.deleteByid(id);
+        delete req.session.userLogged;
+    
+        res.clearCookie('emailUser');
+        res.clearCookie();
 
-        users = userModel.findComplete(false)
-
-        res.render('userList', {users});
+        res.redirect('/');
 
     },
 
     getLogout : ( req , res ) =>{
         
         res.clearCookie('emailUser');
-        res.clearCookie()
+        res.clearCookie('emailAdmin');
+        res.clearCookie();
         req.session.destroy();
         return res.redirect('/');
     },

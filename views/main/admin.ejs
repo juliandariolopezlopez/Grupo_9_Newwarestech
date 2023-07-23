@@ -94,11 +94,11 @@
             <br><br>
 
             <h3>USUARIOS ADMINISTRADORES</h3>
-
+            <p style="color: green;"> * El perfil de los usuarios adminstradores son modificables unicamente desde la sesion del mismo.</p>
             <% usersAdmin.forEach(elemento=>{%>
                 <%if(elemento.email === session.email){%>
                     <br>
-                    <a href="/updateadminuser/<%= elemento.id %>/update"><%= elemento.email %></a>
+                    <a href="/updateadminuser/<%= elemento.id %>"><%= elemento.email %></a>
                     <% } %>
                 <%});%>
                 <br>

@@ -22,6 +22,15 @@ const userModel = {
         return users;
     },
 
+    findAll: function(){
+
+        const allUsersJson = fs.readFileSync(path.join(__dirname, this.route), 'utf-8');
+
+        let users = JSON.parse(allUsersJson);
+
+        return users;
+
+    },
     //Traer un user según su ID
     findByid: function(id){
 
@@ -48,14 +57,17 @@ const userModel = {
 
         let users = this.findComplete(false);
 
+        const user = this.findByField('id',id)
+
         const indice = users.findIndex(userActual => userActual.id === id); //Buscar indice del user
         
         users[indice]={
-            firstName : newData.firstName,
-            lastName : newData.lastName,
+            ...user,
+
+            nombre : newData.nombre,
+            apellido : newData.apellido,
             email : newData.email,
             category : newData.category,
-            password : newData.password,
             image : newData.image,
         }
 
@@ -90,10 +102,12 @@ const userModel = {
 
     deleteByid: function(id){
 
-        let users = this.findComplete(false);
-        const indice = users.findIndex(userActual => userActual.id === id); //Buscar indice del producto
-        users[indice].deleted = true;
+        let users = this.findAll();
+
+        users = users.filter(elemento => elemento.id !== id);
+ 
         const usersJSON = JSON.stringify(users); // Convertir de JS a JSON
+
         fs.writeFileSync(path.join(__dirname, this.route), usersJSON);
 
         return users;
