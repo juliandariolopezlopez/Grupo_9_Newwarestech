@@ -19,10 +19,12 @@
             <% products.forEach(products=>{%>
                 
                 <article class="article">
+
                     <input type="text" name="nombre" value="<%= products.name %>" readonly> 
                     <img src="<%= products.image %>" alt="">
                     <input type="text" name="precio" value="<%= products.price %>" readonly>
-                        <div class="botones">
+                       
+                    <div class="botones">
 
                             <% if (locals.isLogged) { %>
                                 <a href="/products/<%= products.id %>/addToCart"><input type="button" value="Agregar al carrito"></a> 

@@ -188,7 +188,7 @@ const productController = {
 
         let cartProducts = productModel.cartManager(products1)
 
-        console.log(product_type);
+       /*  console.log(product_type); */
 
         switch (product_type) {
 
@@ -213,13 +213,17 @@ const productController = {
     getcleanCart: (req,res)=>{
 
         let clean = [];
+
         let deleted = productModel.clean(clean);
+
         res.render('productCart', {cartProducts});
 
     },
 
     getCart: (req,res)=>{
+
         let cartProducts = productModel.checkCart();
+
         res.render('productcart',{cartProducts})  
     }
 }

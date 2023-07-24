@@ -16,29 +16,31 @@
 
     <section>
    
+      
             <article class="article">
                 
                 <label>Foto</label>
                 <img src="<%= user.image %>" alt="">
-
+                
                 <label for="name">Nombre</label>
                 <input type="text" name="nombre" value="<%= user.nombre %>" readonly> 
-
+                
                 <label for="apellido">Apellido</label>
                 <input type="text" name="apellido" value="<%= user.apellido %>" readonly> 
-
+                
                 <label for="email">Email</label>
                 <input type="text" name="email" value="<%= user.email %>" readonly> 
                 
                 <label for="categoria">Categoria</label>
                 <input type="text" name="categoria" value="<%= user.category %>" readonly> 
-
-                    <div class="botones">
-                        <a href="/users/<%= user.id %>/updateuser"><input type="button" value="Editar Usuario"></a> 
-                    </div>
+                
+                <div class="botones">
+                    <a href="/users/<%= user.id %>/updateuser"><input type="button" value="Editar Usuario"></a> 
+                </div>
             </article>
-
-    </section>
+      
+            
+        </section>
 
     <%- include('../partials/footer') %>
 </body>

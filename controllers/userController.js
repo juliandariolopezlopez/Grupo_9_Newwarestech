@@ -6,6 +6,7 @@ const expressValidator = require('express-validator');
 
 const bcryptjs = require('bcryptjs');
 const session = require('express-session');
+const userAdminModel = require('../models/usersAdmin');
 
 const userController = {
     
@@ -148,7 +149,8 @@ const userController = {
         const user = userModel.findByField('email',req.session.userLogged.email)
      
         res.render('userProfile',{
-            user:user
+            user:user,
+       
         });
     },
 
@@ -159,7 +161,9 @@ const userController = {
 
         const users = userModel.findByid(id)
 
-        res.render('updateUser', {users:users})
+        res.render('updateUser', {
+            users:users
+        })
 
     },
 

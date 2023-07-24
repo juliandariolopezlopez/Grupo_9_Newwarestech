@@ -1,1 +1,10 @@
-[{"id":1,"name":"xiaomi1","image":"/images/celulares/xiaomi1.png","price":"$70.000","product_type":"phones","deleted":false}]
+[
+    {
+        "id": 2,
+        "name": "xiaomi",
+        "image": "/images/celulares/xiaomi2.png",
+        "price": "$920.000",
+        "product_type": "phones",
+        "deleted": false
+    }
+]

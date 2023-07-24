@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 
-const userAdminModel = require('../Models/usersAdmin');
+const userAdminModel = require('../models/usersAdmin');
 
 const expressValidator = require('express-validator');
 
@@ -166,7 +166,7 @@ const controllers = {
 
     getUserAdminToUpdate:(req,res)=>{
 
-      const userAdmin = userAdminModel.findByField('email',req.cookies.emailAdmin)
+      const userAdmin = userAdminModel.findByField('email',req.cookies.emailAdmin ||req.session.userAdminLogged.email)
 
       res.render('updateAdminUsers', {
          userAdmin:userAdmin
@@ -178,7 +178,7 @@ const controllers = {
   
   putUserAdminUpdate: (req,res)=>{
 
-        const userAdmin = userAdminModel.findByField('email',req.cookies.emailAdmin)
+        const userAdmin = userAdminModel.findByField('email',req.cookies.emailAdmin || req.session.userAdminLogged.email)
 
         const id = userAdmin.id;
 
