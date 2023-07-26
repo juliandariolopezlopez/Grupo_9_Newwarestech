@@ -4,6 +4,7 @@ const path = require ('path');
 
 const productModel = require('./product');
 const { search } = require('../routes/userRoutes');
+const { name } = require('ejs');
 
 const cartProductModel = { 
 
@@ -109,32 +110,40 @@ const cartProductModel = {
 
         const index = cartProducts.findIndex(elemento=> elemento.id === cartProductUser.id)
 
-        cartProducts[index] ={
 
+        cartProducts[index] ={
+            
             ...cartProductUser,
-            productId: productsIdToAdd
+
+            productId: [productsIdToAdd]
+            
         }
         
-
-        cartProductsJSON = JSON.stringify(cartProducts);
-
-        fs.writeFileSync(path.join(__dirname, this.route), cartProductsJSON);
-
-        return cartProducts;
-
+        
+        /* cartProductUser.this.productId.push(productId);
+        */
+       
+       cartProductsJSON = JSON.stringify(cartProducts);
+       
+       fs.writeFileSync(path.join(__dirname, this.route), cartProductsJSON);
+       
+       return cartProducts;
+       
     },
-
+    
     removeFromCart : function( productId , userData){
-
+        
         const cartProducts = this.cardProductFindAll();
 
-        const cartProductUser = cartProducts.filter(elemento=> elemento.email === userData.email);
+        let cartProductUser = this.findCartProductByField('email', userData.email);        
 
-        const index = cartProducts.indexOf(cartProductUser)
+        const index = cartProducts.findIndex(elemento=> elemento.id === cartProductUser.id)
+
 
         cartProducts[index]={
-
+            
             ...cartProductUser,
+            productId: [].filter(elemento => elemento !== productId)
             // debe buscar el productID y eliminarlo
         }
 
@@ -146,22 +155,32 @@ const cartProductModel = {
 
     },
 
-    cleanCart : function(data){
+    cleanCart : function( userData){
 
         // Debe buscar el carrito segun el mail del usuario
         // Debe borrar todos los productos que haya en el carrito
         // Debe reescribir el archivo sin los productos
 
-
         //** RECIBE desde ruta  un array vacio, y lo reescribe en el json*/
         // Deberia reescribir solamente el carrito borrado y mantener la info del usuario 
         /* clean: function (data) {} */
 
-            cartProducts = data;
+            const cartProducts = this.cardProductFindAll();
+
+            let cartProductUser = this.findCartProductByField('email', userData.email); 
+            
+            const index = cartProducts.findIndex(elemento=> elemento.id === cartProductUser.id)
+            
+            cartProducts[index]={
+
+                ...cartProductUser,
+                productId: []
+               
+            }
     
-            const productsJSON = JSON.stringify(cartProducts); // Convertir de JS a JSON
+            const cartProductsJSON = JSON.stringify(cartProducts); // Convertir de JS a JSON
     
-            fs.writeFileSync(path.join(__dirname, this.route), productsJSON);
+            fs.writeFileSync(path.join(__dirname, this.route), cartProductsJSON);
     
             return cartProducts;
 
@@ -171,20 +190,27 @@ const cartProductModel = {
 
         let cartProductsUser = this.findCartProductByField('email',email);
 
+        let products
+
         if(!cartProductsUser.productId){
             
-            cartProductsUser = []
-
+            products = []
+            
         }else{
 
-            cartProductsUser = productModel.findByid(cartProductsUser.productId);
+            const productsId = cartProductsUser.productId;
+
+            const id = Number(productsId.join())
+            
+            products = productModel.findByid(id);
+            
         }
         // Debe encontrar los prodcutos por su id y retornarlos en cartProductsUser
         // Como hacer para que lea el array de ids??
         // Luego los lee el metodo findByid y debe retornar los productos.
         // Ahora estan en [] para la lectura
-    
-        return cartProductsUser;
+        
+        return products;
     },
 
 }

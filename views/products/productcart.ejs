@@ -21,10 +21,13 @@
 
                 <% cartProducts.forEach(cartProducts=>{%>
                     <article class="article">
-                        <input type="text" name="nombre" value="<%= cartProducts.name %>" readonly> 
-                        <img src="<%= cartProducts.image %>" alt="">
-                        <input type="text" name="precio" value="<%= cartProducts.price %>" readonly>
-                        <button><a href="/products/<%= cartProducts.id %>/removeFromCart">Eliminar producto</a></button>
+                        <div>
+                            <input type="text" name="nombre" value="<%= cartProducts.name %>"> 
+                            <img src="<%= cartProducts.image %>" alt="">
+                            <input type="text" name="precio" value="<%= cartProducts.price %>">
+                            <button><a href="/products/<%= cartProducts.id %>/removeFromCart">Eliminar producto</a></button>
+
+                        </div>
                     </article>
                 <%}) %>
             </div>

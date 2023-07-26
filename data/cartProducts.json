@@ -1,17 +1,1 @@
-[
-    {
-        "id": 1,
-        "email": "exampleNeeded",
-        "productId": []
-    },
-    {
-        "id": 2,
-        "email": "robertoroman@hotmail.com",
-        "productId": []
-    },
-    {
-        "id": 3,
-        "email": "sebasbenitez@hotmail.com",
-        "productId": 21
-    }
-]
+[{"id":1,"email":"exampleNeeded","productId":[]},{"id":2,"email":"sebasbenitez@hotmail.com","productId":[]}]

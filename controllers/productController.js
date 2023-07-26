@@ -226,16 +226,16 @@ const productController = {
         res.render('productCart',{
 
             cartProducts:[cartProducts]
-            
+
         })
 
     },
 
     getcleanCart: (req,res)=>{
 
-        let clean = [];
+        const userDataSession = req.session.userLogged
 
-        let deleted = cartProductModel.cleanCart(clean);
+        const cartProducts = cartProductModel.cleanCart(userDataSession);
 
         res.render('productCart', {cartProducts});
 
@@ -246,11 +246,15 @@ const productController = {
         const userEmailSession = req.session.userLogged.email;
 
         let cartProducts = cartProductModel.checkCart(userEmailSession);
-        
+
+        if(!cartProducts){
+            cartProducts=[]
+        }
+
         res.render('productcart',{
 
             cartProducts:[cartProducts]
-
+            
         })  
     }
 }
