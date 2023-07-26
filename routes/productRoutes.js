@@ -85,6 +85,8 @@ router.put('/:id/update', productController.updateProduct );
 //@GET /products/:id/addToCart
 router.get('/:id/addToCart', productController.getaddToCart);
 
+router.get('/:id/removeFromCart', productController.getRemoveFromCart);
+
 //@GET /products/cleanCart
 router.get('/cleanCart', productController.getcleanCart);
 

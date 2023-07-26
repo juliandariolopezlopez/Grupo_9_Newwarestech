@@ -6,6 +6,7 @@ const path = require('path');
 const expressValidator = require('express-validator');
 
 const productModel = require('../Models/product');
+const cartProductModel = require('../Models/cartProduct');
 
 const productController = {
 
@@ -184,9 +185,13 @@ const productController = {
 
         let products1 = productModel.findByid(id)
 
+        const userDataSession = req.session.userLogged;
+
+        // Pasar el email a cartManager
+
         const product_type = products1.product_type;
 
-        let cartProducts = productModel.cartManager(products1)
+        cartProductModel.cartManager(products1 , userDataSession)
 
        /*  console.log(product_type); */
 
@@ -210,11 +215,27 @@ const productController = {
         }
     },
 
+    getRemoveFromCart: (req,res)=>{
+
+        const id = Number(req.params.id);
+
+        const userDataSession = req.session.userLogged;
+
+        const cartProducts =  cartProductModel.removeFromCart(id , userDataSession);
+
+        res.render('productCart',{
+
+            cartProducts:[cartProducts]
+            
+        })
+
+    },
+
     getcleanCart: (req,res)=>{
 
         let clean = [];
 
-        let deleted = productModel.clean(clean);
+        let deleted = cartProductModel.cleanCart(clean);
 
         res.render('productCart', {cartProducts});
 
@@ -222,9 +243,15 @@ const productController = {
 
     getCart: (req,res)=>{
 
-        let cartProducts = productModel.checkCart();
+        const userEmailSession = req.session.userLogged.email;
 
-        res.render('productcart',{cartProducts})  
+        let cartProducts = cartProductModel.checkCart(userEmailSession);
+        
+        res.render('productcart',{
+
+            cartProducts:[cartProducts]
+
+        })  
     }
 }
 

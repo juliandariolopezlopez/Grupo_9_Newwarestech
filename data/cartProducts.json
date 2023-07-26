@@ -1,10 +1,17 @@
 [
     {
+        "id": 1,
+        "email": "exampleNeeded",
+        "productId": []
+    },
+    {
         "id": 2,
-        "name": "xiaomi",
-        "image": "/images/celulares/xiaomi2.png",
-        "price": "$920.000",
-        "product_type": "phones",
-        "deleted": false
+        "email": "robertoroman@hotmail.com",
+        "productId": []
+    },
+    {
+        "id": 3,
+        "email": "sebasbenitez@hotmail.com",
+        "productId": 21
     }
 ]

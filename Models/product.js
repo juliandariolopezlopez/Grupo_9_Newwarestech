@@ -149,7 +149,7 @@ const productModel = {
         let cartProducts = JSON.parse(productsJSON);
 
         let cartProductsJSON = JSON.stringify(cartProducts);
-
+        
         return cartProducts;
     },
     //Vaciar carro de compras

@@ -50,8 +50,8 @@ app.use(userAdminLoggedNavMiddleware);
 
 //Enturadotes (routers)
 
-app.use(mainRoutes);
 app.use('/users', userRoutes);
+app.use(mainRoutes);
 app.use('/products', productRoutes); ///products es un prefijo que se usa en el @get
 
 

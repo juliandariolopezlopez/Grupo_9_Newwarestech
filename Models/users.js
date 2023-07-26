@@ -36,12 +36,12 @@ const userModel = {
 
         let users = this.findComplete(false);
 
-        users = users.find(users => users.id === id); 
+        let searched = users.find(users => users.id === id); 
 
-        if(!users){ //en caso que no se encuentre el id a buscar
-            users = null;
+        if(!searched){ //en caso que no se encuentre el id a buscar
+            searched = null;
         }
-        return users;
+        return searched;
     },
 
     findByField: function(field , text){

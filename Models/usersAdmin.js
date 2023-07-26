@@ -41,7 +41,7 @@ const userAdminModel = {
         let searched = users.find(elemento => elemento.id === id); 
 
         if(!searched){ //en caso que no se encuentre el id a buscar
-            users = null;
+            searched = null;
         }
         return searched;
     },

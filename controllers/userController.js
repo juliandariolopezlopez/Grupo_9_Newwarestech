@@ -8,6 +8,8 @@ const bcryptjs = require('bcryptjs');
 const session = require('express-session');
 const userAdminModel = require('../models/usersAdmin');
 
+const cartProductModel = require('../Models/cartProduct');
+
 const userController = {
     
     getRegister:(req,res)=>{
@@ -72,6 +74,7 @@ const userController = {
             }
     
             userModel.createOne(newUser);
+            cartProductModel.createCartProduct(newUser);
     
            return res.redirect('/users/login');
     
