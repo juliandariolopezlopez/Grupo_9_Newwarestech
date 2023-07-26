@@ -110,12 +110,20 @@ const cartProductModel = {
 
         const index = cartProducts.findIndex(elemento=> elemento.id === cartProductUser.id)
 
+        let productsOnCart
+
+        if( cartProductUser.productId.includes(productsIdToAdd)==true){
+
+            productsOnCart = cartProductUser.productId
+        }else{
+            productsOnCart = cartProductUser.productId.concat(productsIdToAdd)
+        }
 
         cartProducts[index] ={
             
             ...cartProductUser,
 
-            productId: [productsIdToAdd]
+            productId: productsOnCart
             
         }
         
@@ -139,11 +147,12 @@ const cartProductModel = {
 
         const index = cartProducts.findIndex(elemento=> elemento.id === cartProductUser.id)
 
+        const productsOnCart = cartProductUser.productId.filter(elemento=>elemento !== productId)
 
         cartProducts[index]={
             
             ...cartProductUser,
-            productId: [].filter(elemento => elemento !== productId)
+            productId: productsOnCart
             // debe buscar el productID y eliminarlo
         }
 
@@ -200,10 +209,12 @@ const cartProductModel = {
 
             const productsId = cartProductsUser.productId;
 
-            const id = Number(productsId.join())
+        /*     const id = Number(productsId.join()) */
+          /*   productsId.forEach(elemento=>console.log(elemento)) */
+
+            products = productModel.findByid(...productsId );
             
-            products = productModel.findByid(id);
-            
+            console.log(products)
         }
         // Debe encontrar los prodcutos por su id y retornarlos en cartProductsUser
         // Como hacer para que lea el array de ids??
