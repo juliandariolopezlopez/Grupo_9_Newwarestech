@@ -66,12 +66,7 @@ const userController = {
                 
             }
 
-            if(!newUser.image){
-
-                newUser.image = '/images/users/user.png';
-            }else{
-                newUser.image = '/images/users/' + req.file.filename;
-            }
+            newUser.image = req.file ? newUser.image = '/images/users/' + req.file.filename : newUser.image = '/images/users/user.png';
     
             userModel.createOne(newUser);
             cartProductModel.createCartProduct(newUser);
@@ -176,14 +171,8 @@ const userController = {
 
             newData = req.body;
 
-            if(!newData.image){
-
-                newData.image = '/images/users/user.png';
-            }else{
-
-                newData.image = '/images/users/' + req.file.filename;
-            }
-
+            newData.image = req.file ? newData.image = '/images/users/' + req.file.filename : newData.image = '/images/users/user.png';
+    
             userModel.updateByid(id, newData)
 
             res.redirect('/users/userprofile')

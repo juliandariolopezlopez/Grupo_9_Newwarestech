@@ -10,6 +10,9 @@ const productController = require('../controllers/productController');
 const router = express.Router();
 
 const validateAddProduct = require('../middlewares/validations');
+const updateValidateProduct = require('../middlewares/validateUpDateProduct');
+
+const adminMiddleware = require('../middlewares/adminMiddleware');
 
 //validaciones
 
@@ -24,7 +27,7 @@ const storage = multer.diskStorage({
     } 
 });
 
-const upload = multer({storage}); 
+const upload = multer({storage : storage}); 
 
 //Configuración multer final
 
@@ -61,20 +64,20 @@ router.post('/:id/productCart', productController.addCart);
 router.get('/createProduct', productController.createProduct); 
 
 //@POST /products/createProduct
-router.post('/createProduct',[ validateAddProduct.validateCreateProduct, upload.single('img')], productController.addProduct); 
+router.post('/createProduct',[ validateAddProduct.validateCreateProduct, upload.single('image'), adminMiddleware], productController.addProduct); 
 
 
 //@GET /products/:id/productDetail
 router.get('/:id/productDetail', productController.getDetail); 
 
 //@DELETE /products/:id/delete
-router.get('/:id/delete', productController.deleteProduct); 
+router.get('/:id/delete', adminMiddleware ,productController.deleteProduct); 
 
 //@GET /products/:id/update
-router.get('/:id/update', productController.getUpdate); 
+router.get('/:id/update', adminMiddleware ,productController.getUpdate); 
 
 //@put /products/:id/put  este es el update
-router.put('/:id/update', productController.updateProduct ); 
+router.put('/:id/update',[ updateValidateProduct.validateUpdateProduct, upload.single('image'), adminMiddleware ],productController.updateProduct ); 
 
 
 

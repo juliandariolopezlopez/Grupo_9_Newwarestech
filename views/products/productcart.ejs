@@ -25,7 +25,16 @@
                             <input type="text" name="nombre" value="<%= cartProducts.name %>"> 
                             <img src="<%= cartProducts.image %>" alt="">
                             <input type="text" name="precio" value="<%= cartProducts.price %>">
-                            <button><a href="/products/<%= cartProducts.id %>/removeFromCart">Eliminar producto</a></button>
+
+                            <% if (locals.adminIsLogged) { %>
+                                
+                                <button><a href="/<%= cartProducts.id %>/removeFromAdminCart">Eliminar producto</a></button>
+                                <% } %>
+                            <% if (locals.IsLogged) { %>
+
+                                <button><a href="/products/<%= cartProducts.id %>/removeFromCart">Eliminar producto</a></button>
+                                <% } %>
+
 
                         </div>
                     </article>
@@ -70,9 +79,19 @@
                 </div>
                 <div>
                     <button class="pagar"> Pagar <i class="fa-solid fa-bag-shopping"></i></button>
-                    <a href="/products/cleanCart">
-                        <button class="pagar"> Limpiar Carrito <i class="fa-solid fa-bag-shopping"></i></button>
-                    </a>
+                    
+                    <% if (locals.adminIsLogged) { %>
+                        
+                        <a href="/cleanAdminCart">    
+                            <button class="pagar"> Limpiar Carrito <i class="fa-solid fa-bag-shopping"></i></button>
+                        </a>
+                        <% } %>
+                    <% if (locals.IsLogged) { %>
+
+                        <a href="/products/cleanCart">    
+                            <button class="pagar"> Limpiar Carrito <i class="fa-solid fa-bag-shopping"></i></button>
+                        </a>
+                        <% } %>
                 </div>
             </div>
         </div>

@@ -87,7 +87,7 @@ const productModel = {
 
         const product = this.findByid(id);
 
-        const indice = products.indexOf(product); //Buscar indice del producto
+        const indice = products.findIndex(elemento => elemento.id === id); //Buscar indice del producto
 
         products[indice]={
             

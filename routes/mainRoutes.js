@@ -45,6 +45,26 @@ router.put('/updateadminuser/:userAdmin/update', mainControllers.putUserAdminUpd
 router.delete ('/updateadminuser/:userAdmin/delete' , mainControllers.deleteUserAdmin)
 
 
+//Carrito del admin
+
+// @GET /products/productCart
+router.get('/productAdminCart', mainControllers.getAdminCart);
+
+//@POST /products/productCart
+router.post('/:id/productAdminCart', mainControllers.addAdminCart); 
+
+
+//@GET /products/:id/addToCart
+router.get('/:id/addToAdminCart', mainControllers.getAdminaddToCart);
+
+router.get('/:id/removeFromAdminCart', mainControllers.getAdminRemoveFromCart);
+
+//@GET /products/cleanCart
+router.get('/cleanAdminCart', mainControllers.getAdmincleanCart);
+
+// fin carrito del admin
+
+
 
 router.post ('/adminlogout' , mainControllers.amdminLogOut)
 

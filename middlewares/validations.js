@@ -20,7 +20,7 @@ const validations={
         .notEmpty()
         .withMessage('Escriba la descripción del producto'),
 
-        expressValidator.body('img')
+        expressValidator.body('image')
         .notEmpty()
         .withMessage('Agregue la imagen del producto')
 

@@ -1,16 +1,1 @@
-[
-    {
-        "id": 1,
-        "email": "exampleNeeded",
-        "productId": []
-    },
-    {
-        "id": 2,
-        "email": "sebasbenitez@hotmail.com",
-        "productId": [
-            2,
-            3,
-            4
-        ]
-    }
-]
+[{"id":1,"email":"exampleNeeded","productId":[]},{"id":2,"email":"sebasbenitez@hotmail.com","productId":[2,3,4]},{"id":3,"email":"hectorfornido@hotmail.com","productId":[13,14]},{"id":4,"email":"ricardoguiso@hotmail.com","productId":[]},{"id":5,"email":"nuevousuario@hotmail.com","productId":[]},{"id":6,"email":"sofidelafuente@hotmail.com","productId":[]},{"id":7,"email":"unnombreapellido@hotmai.com","productId":[13]},{"id":8,"email":"saramolona@hotmail.com","productId":[]},{"id":9,"email":"robertoroberton@hotmail.com","productId":[]},{"id":10,"email":"pedroperez@hotmail.com","productId":[]}]

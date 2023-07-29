@@ -23,23 +23,28 @@
       <section class="main">
         <div class="container-productdetail">
           <div class="main1">
-            <img src="<%= products.image %>" alt="">            
+            <img src="<%= product.image %>" alt="img">            
           </div>
           <div class="main2">
-            <p>Nombre del producto: <%= products.name %></p>
-            <p>Precio: <%= products.price %> </p>
+            <p>Nombre del producto: <%= product.name %></p>
+            <p>Precio: <%= product.price %> </p>
             <p>Fabricante:</p>
             <p>Descripción:</p> <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam ipsa omnis, adipisci assumenda at totam nihil provident, ducimus eius ipsam, facilis sapiente ab fugit. Quas deserunt illum sit officiis atque.</p>
             
-            <a href="/products/<%= products.id %>/addToCart"><input type="button" value="Agregar al carrito"></a> 
+            <% if (locals.IsLogged) { %>
+            <a href="/products/<%= product.id %>/addToCart"><input type="button" value="Agregar al carrito"></a> 
+            <% } %>
             <% if (locals.adminIsLogged) { %>
-             <div>
-               <form action="/products/<%= products.id %>/delete?method=delete" method="get">
+              <div>
+                <a href="/<%= product.id %>/addToAdminCart"><input type="button" value="Agregar al carrito"></a> 
+              </div>
+              <div>
+               <form action="/products/<%= product.id %>/delete?method=delete" method="get">
                  <input type="submit" value="Eliminar Producto"></input>
              </div>
              <div>
             </form>
-            <a href="/products/<%= products.id %>/update">
+            <a href="/products/<%= product.id %>/update">
               <button>Editar producto</button>
              </div>
                 <% } %>

@@ -8,6 +8,8 @@ const expressValidator = require('express-validator');
 const productModel = require('../Models/product');
 const cartProductModel = require('../Models/cartProduct');
 
+
+
 const productController = {
 
     //Renderizar productos en la vista 'productList' inicio
@@ -59,14 +61,14 @@ const productController = {
 
         const id = Number(req.params.id);
 
-        const products = productModel.findByid(id)
+        const product = productModel.findByid(id)
 
         res.render('productDetail', {
-            products
+            product:product
         });
     }, 
     
-    postDetail: (req,res)=>{
+    /* postDetail: (req,res)=>{
 
         let detalleProducto = [];
 
@@ -77,7 +79,7 @@ const productController = {
         res.json(detalleProducto);
 
        // res.render('productDetail')
-    },
+    }, */
 
     createProduct: (req,res)=>{
 
@@ -132,21 +134,40 @@ const productController = {
         const products = productModel.findByid(id)
 
         res.render('updateProduct', {
-            products
+
+            products,
+            errors:[],
+            values:[]
         })
     },
 
     updateProduct: (req,res)=>{
 
         const id = Number(req.params.id);
+        
+        const validations = expressValidator.validationResult(req);
 
+        if(validations.errors.length > 0){
+            
+            res.render('updateProduct', {
+
+                errors:validations.errors,
+                values:req.body
+            });
+
+        }
+
+        // Por el body llega dos veces image porque tiene que leer si no sube imagen
+        
         let newData = req.body;
 
+        newData.image = req.file? '/images/' + req.file.filename : req.body.img
+        
         const product_type = newData.product_type;
 
         productModel.updateByid(id, newData);
 
-        switch (product_type) {
+       /*  switch (product_type) {
 
             case 'phones':
                 return productController.getPhones(req, res);
@@ -163,7 +184,7 @@ const productController = {
         
             default:
                 break;
-        }
+        } */
 
         return res.redirect('/products/:id/productDetail');
     }, 

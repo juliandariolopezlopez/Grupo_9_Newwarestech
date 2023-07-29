@@ -12,7 +12,7 @@ function userAdminLoggedNavMiddleware(req,res,next){
     
         if(userAdminFromCookie){ 
 
-            req.session.userLogged = userAdminFromCookie;
+            req.session.userAdminLogged = userAdminFromCookie;
         }
 
 

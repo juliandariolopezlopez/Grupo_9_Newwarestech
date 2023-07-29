@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 
 const userAdminModel = require('../models/usersAdmin');
+const cartProductModel = require('../Models/cartProduct');
+const productModel = require('../Models/product');
 
 const expressValidator = require('express-validator');
 
@@ -141,6 +143,7 @@ const controllers = {
   }
 
   userAdminModel.createOne(newUser);
+  cartProductModel.createCartProduct(newUser);
 
  return res.redirect('/admin');
 
@@ -207,6 +210,69 @@ const controllers = {
       res.redirect('/admin');
 
   },
+  
+  getAdminCart: (req,res)=>{
+  
+      const userEmailSession = req.session.userAdminLogged.email;
+  
+      let cartProducts = cartProductModel.checkCart(userEmailSession);
+  
+      if(!cartProducts){
+          cartProducts=[]
+      }
+  
+      res.render('productcart',{
+  
+          cartProducts:[cartProducts]
+          
+      })  
+  },
+
+  addAdminCart: (req,res)=>{
+
+    res.send(console.log('hola id: ' + products.id));
+
+},
+
+  getAdminaddToCart: (req,res)=>{
+
+    const id = Number(req.params.id);
+
+    let products1 = productModel.findByid(id)
+
+    const userDataSession = req.session.userAdminLogged;
+
+    // Pasar el email a cartManager
+
+    cartProductModel.cartManager(products1 , userDataSession)
+
+  },
+
+  getAdminRemoveFromCart: (req,res)=>{
+
+    const id = Number(req.params.id);
+
+    const userDataSession = req.session.userAdminLogged;
+
+    const cartProducts =  cartProductModel.removeFromCart(id , userDataSession);
+
+    res.render('productcart',{
+
+        cartProducts:[cartProducts]
+
+    })
+
+},
+
+getAdmincleanCart: (req,res)=>{
+
+    const userDataSession = req.session.userAdminLogged;
+
+    const cartProducts = cartProductModel.cleanCart(userDataSession);
+
+    res.render('productcart', {cartProducts});
+
+},
   
    amdminLogOut:(req,res)=>{
 

@@ -214,7 +214,7 @@ const cartProductModel = {
 
             products = productModel.findByid(...productsId );
             
-            console.log(products)
+           /*  console.log(products) */
         }
         // Debe encontrar los prodcutos por su id y retornarlos en cartProductsUser
         // Como hacer para que lea el array de ids??
