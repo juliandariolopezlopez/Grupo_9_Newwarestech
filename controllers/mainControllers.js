@@ -11,177 +11,179 @@ const bcryptjs = require('bcryptjs');
 
 const controllers = {
 
-    getIndex: (req,res)=>{
-       res.render('index');
+    getIndex: (req, res) => {
+        res.render('index');
     },
 
-    getAdmin: (req,res)=>{
+    getAdmin: (req, res) => {
 
-      const usersAdmin = userAdminModel.findComplete(false);
+        const usersAdmin = userAdminModel.findComplete(false);
 
-      const session = req.session.userAdminLogged;
-  
-        res.render('admin' ,{
-         usersAdmin:usersAdmin,
-         errors:[],
-         values:[],
-         session:session
-      });
-     },
+        const session = req.session.userAdminLogged;
 
-     //Login de administrador
-     postAdmin: (req,res)=>{
-
-      const usersAdmin = userAdminModel.findComplete(false);
-
-      const validation = expressValidator.validationResult(req);
-
-      if(validation.errors.length>0){
-
-          return res.render('admin',{
-              errors:validation.errors,
-              values:req.body,
-              usersAdmin:usersAdmin
-          });
-      };
-
-        const userAdminInLogin = userAdminModel.findByField('email',req.body.email);
-
-        if(!userAdminInLogin){
-
-        return res.render('admin',{
-             errors:[{
-                 msg:'Este email no se encuentra registrado'
-             }],
-             values:req.body,
-             usersAdmin
-         })
-     }
-
-     if(userAdminInLogin){
-
-      const passwordCoincid = bcryptjs.compareSync(req.body.password, userAdminInLogin.password);
-
-      if(passwordCoincid){
-
-          delete userAdminInLogin.password;
-          delete userAdminInLogin.id;
-
-          if(req.body.rememberme){    
-              res.cookie('emailAdmin', userAdminInLogin.email,{ maxAge:(1000*60) *60*24 });
-          }
-          
-          req.session.userAdminLogged = userAdminInLogin;
-
-          return res.redirect('/admin');
-
-      }else{
-
-      return res.render('admin',{
-          errors:[{
-              msg:'Contraseña incorrecta'
-          }],
-          values:req.body,
-      });
-  };
-}
-     },
-
-     // REGISTRACION del ADMINISTRADOR
-    getAdminRegister: (req,res)=>{
-        res.render('adminRegister',{
-
-         errors:[],
-         values:[]
+        res.render('admin', {
+            usersAdmin: usersAdmin,
+            errors: [],
+            values: [],
+            session: session
         });
-     },
+    },
 
-     // REGISTRACION DE UN ADMINISTRADOR POST
+    //Login de administrador
+    postAdmin: (req, res) => {
 
-    postAdminRegister: (req,res)=>{
-      
-      const validation = expressValidator.validationResult(req);
+        const usersAdmin = userAdminModel.findComplete(false);
 
-      if(validation.errors.length>0){
+        const validation = expressValidator.validationResult(req);
 
-         res.render('adminRegister', {
+        if (validation.errors.length > 0) {
 
-            errors: validation.errors,
-            values:req.body
-         });
+            return res.render('admin', {
+                errors: validation.errors,
+                values: req.body,
+                usersAdmin: usersAdmin
+            });
+        };
 
-      }
+        const userAdminInLogin = userAdminModel.findByField('email', req.body.email);
 
-      const passwordEquality = req.body.password === req.body.confirmpassword;
+        if (!userAdminInLogin) {
 
-      if(!passwordEquality){
+            return res.render('admin', {
+                errors: [{
+                    msg: 'Este email no se encuentra registrado'
+                }],
+                values: req.body,
+                usersAdmin
+            })
+        }
 
-         return res.render('register',{
-             errors:[{
-              msg:"La contraseña debe coincidir"   
-             }],
-             values:req.body,
-         })
-     }
+        if (userAdminInLogin) {
 
-     const usuarioAdminEnBD = userAdminModel.findByField('email',req.body.email);
+            const passwordCoincid = bcryptjs.compareSync(req.body.password, userAdminInLogin.password);
 
-     if(usuarioAdminEnBD){
-         return res.render('register',{
-             errors:[{
-                 msg: "El mail ya existe, elija otro"
-             }],
-             values: req.body
-         })
-     }
-     
-     const newUser= {
-                
-      ...req.body,
-      password: bcryptjs.hashSync(req.body.password,10),
-      confirmpassword: bcryptjs.hashSync(req.body.confirmpassword,10)
-  }
+            if (passwordCoincid) {
 
-  userAdminModel.createOne(newUser);
-  cartProductModel.createCartProduct(newUser);
+                delete userAdminInLogin.password;
+                delete userAdminInLogin.id;
 
- return res.redirect('/admin');
+                if (req.body.rememberme) {
+                    res.cookie('emailAdmin', userAdminInLogin.email, { maxAge: (1000 * 60) * 60 * 24 });
+                }
 
-     },
+                req.session.userAdminLogged = userAdminInLogin;
 
-     // Perfil del ADMINISTRADOR
+                return res.redirect('/admin');
 
-     getAdminUserProfile:(req,res)=>{
- 
+            } else {
+
+                return res.render('admin', {
+                    errors: [{
+                        msg: 'Contraseña incorrecta'
+                    }],
+                    values: req.body,
+                });
+            };
+        }
+    },
+
+    // REGISTRACION del ADMINISTRADOR
+    getAdminRegister: (req, res) => {
+        res.render('adminRegister', {
+
+            errors: [],
+            values: []
+        });
+    },
+
+    // REGISTRACION DE UN ADMINISTRADOR POST
+
+    postAdminRegister: (req, res) => {
+
+        const validation = expressValidator.validationResult(req);
+
+        if (validation.errors.length > 0) {
+
+            res.render('adminRegister', {
+
+                errors: validation.errors,
+                values: req.body
+            });
+
+        }
+
+        const passwordEquality = req.body.password === req.body.confirmpassword;
+
+        if (!passwordEquality) {
+
+            return res.render('register', {
+                errors: [{
+                    msg: "La contraseña debe coincidir"
+                }],
+                values: req.body,
+            })
+        }
+
+        const usuarioAdminEnBD = userAdminModel.findByField('email', req.body.email);
+
+        if (usuarioAdminEnBD) {
+            return res.render('register', {
+                errors: [{
+                    msg: "El mail ya existe, elija otro"
+                }],
+                values: req.body
+            })
+        }
+
+        const newUser = {
+
+            ...req.body,
+            password: bcryptjs.hashSync(req.body.password, 10),
+            confirmpassword: bcryptjs.hashSync(req.body.confirmpassword, 10)
+        }
+
+        userAdminModel.createOne(newUser);
+
+        const userClass = "AdminUser";
+        cartProductModel.createCartProduct(newUser, userClass);
+
+        return res.redirect('/admin');
+
+    },
+
+    // Perfil del ADMINISTRADOR
+
+    getAdminUserProfile: (req, res) => {
+
         const id = Number(req.query.id);
 
-       const userAdmin = userAdminModel.findByField('id',id)
-      
-       res.render('adminUserProfile', {
+        const userAdmin = userAdminModel.findByField('id', id)
 
-        userAdmin:userAdmin
-          
-       })
-     
+        res.render('adminUserProfile', {
+
+            userAdmin: userAdmin
+
+        })
+
     },
 
-     // UPDATE del ADMINISTRADOR
+    // UPDATE del ADMINISTRADOR
 
-    getUserAdminToUpdate:(req,res)=>{
+    getUserAdminToUpdate: (req, res) => {
 
-      const userAdmin = userAdminModel.findByField('email',req.cookies.emailAdmin ||req.session.userAdminLogged.email)
+        const userAdmin = userAdminModel.findByField('email', req.cookies.emailAdmin || req.session.userAdminLogged.email)
 
-      res.render('updateAdminUsers', {
-         userAdmin:userAdmin
-      })
+        res.render('updateAdminUsers', {
+            userAdmin: userAdmin
+        })
 
-  },
+    },
 
-  // PUT del ADMINISTRADOR
-  
-  putUserAdminUpdate: (req,res)=>{
+    // PUT del ADMINISTRADOR
 
-        const userAdmin = userAdminModel.findByField('email',req.cookies.emailAdmin || req.session.userAdminLogged.email)
+    putUserAdminUpdate: (req, res) => {
+
+        const userAdmin = userAdminModel.findByField('email', req.cookies.emailAdmin || req.session.userAdminLogged.email)
 
         const id = userAdmin.id;
 
@@ -192,97 +194,103 @@ const controllers = {
         userAdminModel.updateByid(id, newAdminData)
 
         res.redirect('/admin')
-  },
+    },
 
-  // Delete del ADMINISTRADOR
+    // Delete del ADMINISTRADOR
 
-  deleteUserAdmin:(req,res)=>{
+    deleteUserAdmin: (req, res) => {
 
-      const id = Number(req.params.userAdmin);
+        const id = Number(req.params.userAdmin);
 
-      userAdminModel.deleteByid(id);
+        userAdminModel.deleteByid(id);
 
-   /*    users = userAdminModel.findComplete(false)
- */
-      delete req.session.userAdminLogged
-      res.clearCookie('emailAdmin');
+        /*    users = userAdminModel.findComplete(false)
+      */
+        delete req.session.userAdminLogged
+        res.clearCookie('emailAdmin');
 
-      res.redirect('/admin');
+        res.redirect('/admin');
 
-  },
-  
-  getAdminCart: (req,res)=>{
-  
-      const userEmailSession = req.session.userAdminLogged.email;
-  
-      let cartProducts = cartProductModel.checkCart(userEmailSession);
-  
-      if(!cartProducts){
-          cartProducts=[]
-      }
-  
-      res.render('productcart',{
-  
-          cartProducts:[cartProducts]
-          
-      })  
-  },
+    },
 
-  addAdminCart: (req,res)=>{
+    getAdminCart: (req, res) => {
 
-    res.send(console.log('hola id: ' + products.id));
+        const userEmailSession = req.session.userAdminLogged.email;
 
-},
+        let cartAdminProducts = cartProductModel.checkCart(userEmailSession);
 
-  getAdminaddToCart: (req,res)=>{
+        if (!cartAdminProducts) {
 
-    const id = Number(req.params.id);
+            cartAdminProducts = []
+        }
 
-    let products1 = productModel.findByid(id)
+        return res.render('productcart', {
 
-    const userDataSession = req.session.userAdminLogged;
+            cartAdminProducts: [cartAdminProducts]
 
-    // Pasar el email a cartManager
+        })
+    },
 
-    cartProductModel.cartManager(products1 , userDataSession)
+    addAdminCart: (req, res) => {
 
-  },
+        res.send(console.log('hola id: ' + products.id));
 
-  getAdminRemoveFromCart: (req,res)=>{
+    },
 
-    const id = Number(req.params.id);
+    getAdminaddToCart: (req, res) => {
 
-    const userDataSession = req.session.userAdminLogged;
+        const id = Number(req.params.id);
 
-    const cartProducts =  cartProductModel.removeFromCart(id , userDataSession);
+        let products1 = productModel.findByid(id)
 
-    res.render('productcart',{
+        const userDataSession = req.session.userAdminLogged;
 
-        cartProducts:[cartProducts]
+        // Pasar el email a cartManager
 
-    })
+        cartProductModel.cartManager(products1, userDataSession)
 
-},
+        return res.redirect('/productAdminCart')
 
-getAdmincleanCart: (req,res)=>{
+    },
 
-    const userDataSession = req.session.userAdminLogged;
+    getAdminRemoveFromCart: (req, res) => {
 
-    const cartProducts = cartProductModel.cleanCart(userDataSession);
+        const id = Number(req.params.id);
 
-    res.render('productcart', {cartProducts});
+        const userDataSession = req.session.userAdminLogged;
 
-},
-  
-   amdminLogOut:(req,res)=>{
+        const cartAdminProducts = cartProductModel.removeFromCart(id, userDataSession);
 
-      res.clearCookie('emailAdmin');
-      res.clearCookie('emailUser');
-      res.clearCookie();
-      req.session.destroy();
-      return res.redirect('/admin');
+        return res.render('productcart', {
 
-  }
+            cartAdminProducts: [cartAdminProducts]
+
+        })
+
+    },
+
+    getAdmincleanCart: (req, res) => {
+
+        const userDataSession = req.session.userAdminLogged;
+
+        const cartAdminProducts = cartProductModel.cleanCart(userDataSession);
+
+        return res.render('productcart', {
+
+            cartAdminProducts
+        });
+
+    },
+
+    amdminLogOut: (req, res) => {
+
+        res.clearCookie('emailAdmin');
+        res.clearCookie('emailUser');
+        res.clearCookie();
+        req.session.destroy();
+        return res.redirect('/admin');
+
+    }
 
 }
 

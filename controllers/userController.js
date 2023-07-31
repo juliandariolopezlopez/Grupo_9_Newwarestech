@@ -6,9 +6,10 @@ const expressValidator = require('express-validator');
 
 const bcryptjs = require('bcryptjs');
 const session = require('express-session');
+
 const userAdminModel = require('../models/usersAdmin');
 
-const cartProductModel = require('../Models/cartProduct');
+const cartProductModel = require('../Models/cartProduct.js');
 
 const userController = {
     
@@ -67,10 +68,16 @@ const userController = {
             }
 
             newUser.image = req.file ? newUser.image = '/images/users/' + req.file.filename : newUser.image = '/images/users/user.png';
-    
+
             userModel.createOne(newUser);
-            cartProductModel.createCartProduct(newUser);
-    
+
+            if(newUser){
+
+                const userClass = "ClientUser"
+
+                cartProductModel.createCartProduct(newUser,userClass)
+            }
+
            return res.redirect('/users/login');
     
     },

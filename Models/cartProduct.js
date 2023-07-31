@@ -24,7 +24,7 @@ const cartProductModel = {
     },
 
     // Se crea un cartPorduct al crear un usuario nuevo.
-    createCartProduct: function(newUserCart){
+    createCartProduct: function(newUserCart, userClass ){
 
         // Al agregarse uno, se creara una nueva carta de product.
         // con la informacion del usuario
@@ -48,6 +48,7 @@ const cartProductModel = {
 
             id : cartProducts[cartProducts.length - 1].id + 1,
             email: newUserCart.email,
+            userType: userClass,
             productId : []
         }
 
@@ -61,9 +62,9 @@ const cartProductModel = {
         //identificar mail del nuevo
         // crear nuevo carrito con mail y id
 
-        return newUserCart
+        return newUserCart;
     },
-
+    
     // Encontrar el CartProduct, lo identifica el email del usuario
     findCartProductByField: function(field , text){
 

@@ -216,7 +216,9 @@ const productController = {
 
        /*  console.log(product_type); */
 
-        switch (product_type) {
+       // PARA QUE EL SWITCH??
+
+        /* switch (product_type) {
 
             case 'phones':
                 return productController.getPhones(req, res);
@@ -233,7 +235,9 @@ const productController = {
         
             default:
                 break;
-        }
+        } */
+
+        return res.redirect('/products/productCart');
     },
 
     getRemoveFromCart: (req,res)=>{
@@ -244,7 +248,7 @@ const productController = {
 
         const cartProducts =  cartProductModel.removeFromCart(id , userDataSession);
 
-        res.render('productCart',{
+        res.render('productcart',{
 
             cartProducts:[cartProducts]
 
@@ -258,25 +262,25 @@ const productController = {
 
         const cartProducts = cartProductModel.cleanCart(userDataSession);
 
-        res.render('productCart', {cartProducts});
+        res.render('productcart', {cartProducts});
 
     },
 
     getCart: (req,res)=>{
 
         const userEmailSession = req.session.userLogged.email;
-
+        
         let cartProducts = cartProductModel.checkCart(userEmailSession);
 
         if(!cartProducts){
             cartProducts=[]
         }
-
-        res.render('productcart',{
+       
+        return res.render('productcart',{
 
             cartProducts:[cartProducts]
             
-        })  
+        });
     }
 }
 
