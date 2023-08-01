@@ -30,3 +30,16 @@ Mas alla de no poder juntarnos a hacer las dailies, estamos comunicados por el g
 <p>
 En este Sprint, tuvimos un nuevo integrante en el proyecto. Le informamos de que se trata y como venimos trabajando. Lo unimos a Trello y en Github.
 
+
+
+**Sprint 6**
+<p>
+En este Sprint no nos comunicamos a traves de dailys pero si por el grupo de WhatsApp.
+<p>
+No pudimos completar todos los puntos requeridos, ya que estuvimos trabajando con cositas pendientes que nos habian quedado del Sprint anterior. 
+<p>
+Logramos adelantar la mayor parte y estamos trabajando para terminar los puntos pendientes que nos quedan por hacer.
+
+
+
+
