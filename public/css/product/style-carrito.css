@@ -48,6 +48,7 @@ nav{
     align-items: center;
     justify-content: space-around;
     border: none;
+
 }
 a:hover{
     background-color: #834eac;
@@ -63,8 +64,8 @@ nav a{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5px 10px;
-    font-size: 14px;
+    padding: 10px 10px;
+    font-size: 10px;
 }
 .productos{
     max-width: 1200px;
@@ -72,7 +73,7 @@ nav a{
     margin: auto;
     display: flex;
     justify-content: space-between;
-    contain: paint;
+
 }
 .productos-items{
    margin-top: 30px;
