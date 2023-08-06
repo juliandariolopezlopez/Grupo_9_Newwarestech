@@ -5,7 +5,6 @@ const router = express.Router();
 const validationsUser = require('../middlewares/validationsUser');
 const validationsUserLogin = require('../middlewares/validationUserLogin');
 
-const userAdminLoggedNavMiddleware = require('../middlewares/userAdminLoggedNavMiddleware');
 
 //@get /
 router.get('/', mainControllers.getIndex);

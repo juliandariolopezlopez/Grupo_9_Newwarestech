@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 
+const db = require ("../database/models")
+
 const userAdminModel = require('../Models/usersAdmin');
 
 const expressValidator = require('express-validator');
