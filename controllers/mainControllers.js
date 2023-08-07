@@ -1,11 +1,15 @@
 const express = require('express');
 const path = require('path');
 
+const uuid = require('uuid');
+
 const userAdminModel = require('../models/usersAdmin');
-const cartProductModel = require('../Models/cartProduct');
-const productModel = require('../Models/product');
+const cartProductModel = require('..models/cartProduct');
+const productModel = require('../models/product');
 
 const expressValidator = require('express-validator');
+
+const db = require("../database/models");
 
 const bcryptjs = require('bcryptjs');
 
@@ -17,36 +21,69 @@ const controllers = {
 
     getAdmin: (req, res) => {
 
-        const usersAdmin = userAdminModel.findComplete(false);
-
         const session = req.session.userAdminLogged;
 
-        res.render('admin', {
-            usersAdmin: usersAdmin,
-            errors: [],
-            values: [],
-            session: session
-        });
+        db.Usuario.findAll()
+        .then(function(usuarios){
+
+            if(usuarios.userType === "adminUser"){
+                
+                const usersAdmin = usuarios;
+
+                return usersAdmin;
+            }
+
+            return res.render('admin', {
+                usersAdmin: usersAdmin,
+                errors: [],
+                values: [],
+                session: session
+            });
+        })
+
     },
 
     //Login de administrador
     postAdmin: (req, res) => {
 
-        const usersAdmin = userAdminModel.findComplete(false);
+        /* const usersAdmin = userAdminModel.findComplete(false); */
 
-        const validation = expressValidator.validationResult(req);
+        db.Usuario.findAll({
 
-        if (validation.errors.length > 0) {
+            where : {
+                userType : "adminUser"
+            }
+        })
+        .then(function(usuarios){
 
-            return res.render('admin', {
-                errors: validation.errors,
-                values: req.body,
-                usersAdmin: usersAdmin
-            });
-        };
+                const usersAdmin = usuarios;
 
-        const userAdminInLogin = userAdminModel.findByField('email', req.body.email);
+                return usersAdmin;
+            })
+            
+            const validation = expressValidator.validationResult(req);
+            
+            if (validation.errors.length > 0) {
 
+                return res.render('admin', {
+                    errors: validation.errors,
+                    values: req.body,
+                    usersAdmin: usersAdmin
+                });
+            };
+
+        db.Usuario.findOne({
+
+            where:{
+                email : req.body.email
+            }
+        }).then( function(usuario){
+
+            const userAdminInLogin = usuario;
+
+            return userAdminInLogin;
+        })
+            
         if (!userAdminInLogin) {
 
             return res.render('admin', {
@@ -60,7 +97,16 @@ const controllers = {
 
         if (userAdminInLogin) {
 
-            const passwordCoincid = bcryptjs.compareSync(req.body.password, userAdminInLogin.password);
+            db.Usuario.findOne({
+                where:{
+                    email : req.body.email
+                }
+            }).then(function(usuario){
+
+                const passwordCoincid = bcryptjs.compareSync(req.body.password, usuario.password);
+                
+                return passwordCoincid;
+            })
 
             if (passwordCoincid) {
 
@@ -124,7 +170,18 @@ const controllers = {
             })
         }
 
-        const usuarioAdminEnBD = userAdminModel.findByField('email', req.body.email);
+        db.Usuario.findOne({
+            where:{
+                email:req.body.email
+            }
+        }).then(function(usuario){
+
+            let usuarioAdminEnBD = usuario;
+
+            return usuarioAdminEnBD
+        })
+
+        /* const usuarioAdminEnBD = userAdminModel.findByField('email', req.body.email); */
 
         if (usuarioAdminEnBD) {
             return res.render('register', {
@@ -140,12 +197,28 @@ const controllers = {
             ...req.body,
             password: bcryptjs.hashSync(req.body.password, 10),
             confirmpassword: bcryptjs.hashSync(req.body.confirmpassword, 10)
+
         }
 
-        userAdminModel.createOne(newUser);
+        /* userAdminModel.createOne(newUser); */
 
-        const userClass = "AdminUser";
-        cartProductModel.createCartProduct(newUser, userClass);
+        db.Usuario.create({
+            ...newUser
+        })
+
+        if(newUser){
+
+            const userClass = "AdminUser";
+
+            db.Cartproduct.create({
+                email: req.body.email,
+                userType: "userAdmin",
+                productId:[]
+            })
+
+            /* cartProductModel.createCartProduct(newUser, userClass); */
+
+        }
 
         return res.redirect('/admin');
 
@@ -157,13 +230,22 @@ const controllers = {
 
         const id = Number(req.query.id);
 
-        const userAdmin = userAdminModel.findByField('id', id)
+        db.Usuario.findOne({
+            where:{
+                id:id
+            }
+        }).then(function(usuario){
 
-        res.render('adminUserProfile', {
+            const userAdmin = usuario
+
+            return res.render('adminUserProfile', {
 
             userAdmin: userAdmin
+        });
 
         })
+
+        /* const userAdmin = userAdminModel.findByField('id', id) */
 
     },
 
@@ -171,11 +253,20 @@ const controllers = {
 
     getUserAdminToUpdate: (req, res) => {
 
-        const userAdmin = userAdminModel.findByField('email', req.cookies.emailAdmin || req.session.userAdminLogged.email)
+        db.Usuario.findOne({
+            where:{
+                email: req.session.userAdminLogged.email
+            }
+        }).then(function(usuario){
 
-        res.render('updateAdminUsers', {
+            const userAdmin = usuario;
+
+            return res.render('updateAdminUsers', {
             userAdmin: userAdmin
+        });
         })
+
+        /* const userAdmin = userAdminModel.findByField('email', req.cookies.emailAdmin || req.session.userAdminLogged.email) */
 
     },
 
@@ -183,15 +274,19 @@ const controllers = {
 
     putUserAdminUpdate: (req, res) => {
 
-        const userAdmin = userAdminModel.findByField('email', req.cookies.emailAdmin || req.session.userAdminLogged.email)
+        /* const userAdmin = userAdminModel.findByField('email', req.cookies.emailAdmin || req.session.userAdminLogged.email) */
 
-        const id = userAdmin.id;
+        db.Usuario.update({
 
-        const newAdminData = req.body;
+            ...req.body
+        },{
+            where:{
+                email: req.session.userAdminLogged.email
+            }
+        })
 
         /* newData.image = '/images/users/' + req.file.filename; */
-
-        userAdminModel.updateByid(id, newAdminData)
+        /* userAdminModel.updateByid(id, newAdminData) */
 
         res.redirect('/admin')
     },
@@ -202,10 +297,15 @@ const controllers = {
 
         const id = Number(req.params.userAdmin);
 
-        userAdminModel.deleteByid(id);
+        db.Usuario.destroy({
+            where:{
+                id:id
+            }
+        })
 
-        /*    users = userAdminModel.findComplete(false)
-      */
+        /* userAdminModel.deleteByid(id); */
+        /*    users = userAdminModel.findComplete(false)*/
+
         delete req.session.userAdminLogged
         res.clearCookie('emailAdmin');
 
@@ -214,21 +314,31 @@ const controllers = {
     },
 
     getAdminCart: (req, res) => {
-
+        
         const userEmailSession = req.session.userAdminLogged.email;
 
-        let cartAdminProducts = cartProductModel.checkCart(userEmailSession);
+        db.Cartproduct.findOne({
+            where:{
+                email: userEmailSession
+            }
+        }).then(function(cartproduct){
 
-        if (!cartAdminProducts) {
+            cartAdminProducts = cartproduct;
 
-            cartAdminProducts = []
-        }
+            if (!cartAdminProducts) {
+    
+                return cartAdminProducts = []
+            }
 
-        return res.render('productcart', {
+            return res.render('productcart', {
 
-            cartAdminProducts: [cartAdminProducts]
+            cartAdminProducts: cartAdminProducts
 
         })
+        })
+
+        /* let cartAdminProducts = cartProductModel.checkCart(userEmailSession); */
+
     },
 
     addAdminCart: (req, res) => {
@@ -241,15 +351,58 @@ const controllers = {
 
         const id = Number(req.params.id);
 
-        let products1 = productModel.findByid(id)
+        /* let products1 = productModel.findByid(id) */
 
-        const userDataSession = req.session.userAdminLogged;
+        db.Producto.findOne({
+            where:{
+                id:id
+            }
+        }).then(function(porducto){
 
-        // Pasar el email a cartManager
+            const producto = producto;
 
-        cartProductModel.cartManager(products1, userDataSession)
+            return producto;
+        })
+
+        // Hay que preguntar a la carta de producto
+        // Carta de producto, donde email
+        // Esta el producto que quiere agregar?
+        // Como es un array se le puede preguntar includes if true
+        // Si no esta lo suma con update en productId . push
+        // Si esta ya lo tiene
+
+        db.Cartproduct.findOne({
+
+            where:{
+                email: req.session.userAdminLogged.email
+            }
+        }).then(function(cartadeproducto){
+
+            const cartadeproducto = cartadeproducto;
+            
+            return cartadeproducto;
+        })
+
+        if(cartadeproducto.productId.includes(producto) === false){
+
+            db.Cartproduct.update({
+
+                productId:productId.push(producto)
+            },{
+                where:{
+                    email: req.session.userAdminLogged.email
+                }
+            })
+        }else{
+
+            return res.redirect('/productAdminCart')
+        }
+
 
         return res.redirect('/productAdminCart')
+    
+        // Pasar el email a cartManager
+      /*   cartProductModel.cartManager(products1, userDataSession) */
 
     },
 
@@ -259,13 +412,26 @@ const controllers = {
 
         const userDataSession = req.session.userAdminLogged;
 
-        const cartAdminProducts = cartProductModel.removeFromCart(id, userDataSession);
+        db.Cartproduct.destroy({
 
-        return res.render('productcart', {
+            productId:id
+        },{
+            where:{
+                email:userDataSession.email
+            }
+        }).then(function(cartadeproducto){
+
+            const cartAdminProducts = cartadeproducto;
+
+            return res.render('productcart', {
 
             cartAdminProducts: [cartAdminProducts]
 
         })
+
+        })
+
+        /* const cartAdminProducts = cartProductModel.removeFromCart(id, userDataSession); */
 
     },
 
@@ -273,12 +439,23 @@ const controllers = {
 
         const userDataSession = req.session.userAdminLogged;
 
-        const cartAdminProducts = cartProductModel.cleanCart(userDataSession);
+        db.Cartproduct.destroy({
+            productId
+        },{
+            where: {
+                email: userDataSession.email
+            }
+        }).then(function(cartadeproducto){
 
-        return res.render('productcart', {
+            const cartAdminProducts = cartadeproducto;
+
+            return res.render('productcart', {
 
             cartAdminProducts
         });
+        })
+
+        /* const cartAdminProducts = cartProductModel.cleanCart(userDataSession); */
 
     },
 

@@ -2,7 +2,7 @@
 const fs = require ('fs');
 const path = require ('path');
 
-const productModel = require('./product');
+const productModel = require("./product");
 const { search } = require('../routes/userRoutes');
 const { name } = require('ejs');
 

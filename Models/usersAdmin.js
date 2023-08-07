@@ -3,37 +3,29 @@ const path = require('path');
 const uuid = require('uuid');
 const { findAll } = require('./product');
 
+const db = require('../database/models')
+
 const userAdminModel = {
 
-    //Ruta del archivo JSON
-    route: '../data/adminUsers.json',
-
-    //Ver base completa, activos e inactivos
-
-    findComplete: function(deleted){
-        
-        const allUsersJSON = fs.readFileSync(path.join(__dirname, this.route), 'utf-8'); //Leer archivo JSON y tipo de caracteres que se usan 
-        
-        let users = JSON.parse(allUsersJSON) //Traducir de JSON a JS
-        
-        users = users.filter(users => (users.deleted === deleted));
-        
-        const userJSON = JSON.stringify(users); // Convertir de JS a JSON 
-        
-        return users;
-    },
-
     findAll: function(){
+       
+        let adminUsers = db.Usuario.findAll()
 
-         const allAdminUsersJson = fs.readFileSync(path.join(__dirname, this.route), 'utf-8');
+        .then(function(usuarios){
 
-        let adminUsers = JSON.parse(allAdminUsersJson);
+            if(usuarios.userType === "adminUser"){
+
+                return adminUsers;
+            }
+
+        })
 
         return adminUsers;
 
     },
 
     //Traer un user según su ID
+
     findByid: function(id){
 
         let users = this.findAll();

@@ -9,7 +9,7 @@ const session = require('express-session');
 
 const userAdminModel = require('../models/usersAdmin');
 
-const cartProductModel = require('../Models/cartProduct.js');
+const cartProductModel = require('../models/cartProduct.js');
 
 const userController = {
     
@@ -64,7 +64,7 @@ const userController = {
                 ...req.body,
                 password: bcryptjs.hashSync(req.body.password,10),
                 confirmpassword: bcryptjs.hashSync(req.body.confirmpassword,10),    
-                
+                userType:"clientUser"
             }
 
             newUser.image = req.file ? newUser.image = '/images/users/' + req.file.filename : newUser.image = '/images/users/user.png';
