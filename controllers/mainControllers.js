@@ -378,12 +378,12 @@ const controllers = {
             }
         }).then(function(cartadeproducto){
 
-            const cartadeproducto = cartadeproducto;
+            const cartproduct = cartadeproducto;
             
-            return cartadeproducto;
+            return cartproduct;
         })
 
-        if(cartadeproducto.productId.includes(producto) === false){
+        if(cartproduct.productId.includes(producto) === false){
 
             db.Cartproduct.update({
 
