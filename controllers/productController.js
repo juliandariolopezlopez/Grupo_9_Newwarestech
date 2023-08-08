@@ -354,9 +354,20 @@ const productController = {
 
         const userDataSession = req.session.userLogged
 
-        const cartProducts = cartProductModel.cleanCart(userDataSession);
+        /* const cartProducts = cartProductModel.cleanCart(userDataSession); */
 
-        res.render('productcart', {cartProducts});
+        db.CartProduct.update({
+
+            productId:[]
+            // Pregunta, el reemplazo por un array vacio elimina los existentes?
+
+        },{
+            where:{
+                email: userDataSession.email
+            }
+        });
+
+        res.redirect('/products/productCart');
 
     },
 
@@ -364,17 +375,27 @@ const productController = {
 
         const userEmailSession = req.session.userLogged.email;
         
-        let cartProducts = cartProductModel.checkCart(userEmailSession);
+        /* let cartProducts = cartProductModel.checkCart(userEmailSession); */
 
-        if(!cartProducts){
-            cartProducts=[]
-        }
-       
-        return res.render('productcart',{
+        db.CartProduct.findAll({
+            where:{
+                email:userEmailSession
+            }
+        }).then(function(cartadeproducto){
+
+            const cartProducts = cartadeproducto;
+
+            return res.render('productcart',{
 
             cartProducts:[cartProducts]
             
         });
+        })
+
+       /*  if(!cartProducts){
+            cartProducts=[]
+        }
+        */
     }
 }
 
