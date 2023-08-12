@@ -16,6 +16,7 @@ module.exports= function(sequelize,dataTypes){
         name:{
             type:dataTypes.String
         }
+        
     }
 
     let config = {

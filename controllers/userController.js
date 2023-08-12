@@ -1,15 +1,15 @@
 const express = require('express');
 
-const userModel = require('../models/users');
+const userModel = require('../modelsJSON/users');
 
 const expressValidator = require('express-validator');
 
 const bcryptjs = require('bcryptjs');
 const session = require('express-session');
 
-const userAdminModel = require('../models/usersAdmin');
+const userAdminModel = require('../modelsJSON/usersAdmin');
 
-const cartProductModel = require('../models/cartProduct.js');
+const cartProductModel = require('../modelsJSON/cartProduct.js');
 
 const db = require("../database/models");
 

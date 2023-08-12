@@ -1,5 +1,5 @@
 
-const userAdminModel = require('../models/usersAdmin');
+const userAdminModel = require('../modelsJSON/usersAdmin');
 
 
 function userAdminLoggedNavMiddleware(req,res,next){

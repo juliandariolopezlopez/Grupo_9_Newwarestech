@@ -5,8 +5,8 @@ const path = require('path');
 
 const expressValidator = require('express-validator');
 
-const productModel = require('../models/product');
-const cartProductModel = require('../models/cartProduct');
+const productModel = require('../modelsJSON/product');
+const cartProductModel = require('../modelsJSON/cartProduct');
 
 const db = require("../database/models");
 

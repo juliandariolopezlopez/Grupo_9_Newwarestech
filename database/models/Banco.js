@@ -28,7 +28,9 @@ module.exports= function(sequelize,dataTypes){
 
     let config = {
         tableName : "bancos",
-        timestamps : false
+        timestamps : false,
+        paranoid : true
+        // soft delete, buscar en sequelize
     }
 
     let Banco = sequelize.define(alias,cols,config);
