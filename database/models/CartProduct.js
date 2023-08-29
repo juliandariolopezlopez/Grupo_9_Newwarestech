@@ -13,15 +13,22 @@ module.exports= function(sequelize,dataTypes){
         // Deberia ser un email. 
         // Tipo de usuario: cliente o administrador
         // Array de ID de productos seleccionados. figuraran en el Cartporduct
-        name:{
-            type:dataTypes.String
+        productos_carrito_id:{
+            type:dataTypes.INTEGER
+        },
+        usuarios_carrito_id:{
+            type:dataTypes.INTEGER
+        },
+        bancos_carrito_id:{
+            type:dataTypes.INTEGER
         }
         
     }
 
     let config = {
-        tableName : "cartproduct",
-        timestamps : false
+        tableName : "carrito",
+        timestamps : false,
+        paranoid : true
     }
 
     let Cartproduct = sequelize.define(alias,cols,config);
@@ -45,6 +52,14 @@ module.exports= function(sequelize,dataTypes){
             through:"cartproduct_producto",
             foreignKey : "cartproduct_id",
             otherKey : "producto_id",
+            timestamps:false
+        });
+
+        Cartproduct.belongsToMany(models.Banco,{
+            as: "bancos",
+            through:"banco_producto",
+            foreignKey : "cartproduct_id",
+            otherKey : "banco_id",
             timestamps:false
         });
 

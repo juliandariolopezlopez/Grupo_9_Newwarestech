@@ -3,10 +3,6 @@ const path = require('path');
 
 const uuid = require('uuid');
 
-const userAdminModel = require('../modelsJSON/usersAdmin');
-const cartProductModel = require('..models/cartProduct');
-const productModel = require('../modelsJSON/product');
-
 const expressValidator = require('express-validator');
 
 const db = require("../database/models");

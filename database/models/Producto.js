@@ -11,8 +11,21 @@ module.exports= function(sequelize,dataTypes){
             primaryKey : true,
             autoIncrement : true
         },
-        name:{
-            type:dataTypes.String
+        nombre:{
+            type:dataTypes.STRING
+        },
+        precio:{
+            type:dataTypes.INTEGER
+        },
+        imagen:{
+            type:dataTypes.BLOB,
+            allowNull: true
+        },
+        descripcion:{
+            type:dataTypes.STRING
+        },
+        stock:{
+            type:dataTypes.INTEGER
         },
         categoria_id : {
             type: dataTypes.INTEGER
@@ -23,7 +36,8 @@ module.exports= function(sequelize,dataTypes){
 
     let config = {
         tableName : "productos",
-        timestamps : false
+        timestamps : false,
+        paranoid : true
     }
 
     let Producto = sequelize.define(alias,cols,config);

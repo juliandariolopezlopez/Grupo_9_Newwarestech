@@ -11,15 +11,23 @@ module.exports= function(sequelize,dataTypes){
             primaryKey : true,
             autoIncrement : true
         },
-        name:{
-            type:dataTypes.String
+        razonsocial:{
+            type:dataTypes.STRING
         },
+        trackingnumber:{
+            type:dataTypes.INTEGER
+        },
+        patentevehicular:{
+            type:dataTypes.STRING
+        },
+        
     
     }
 
     let config = {
         tableName : "transporte",
-        timestamps : false
+        timestamps : false,
+        paranoid : true
     }
 
     let Transporte = sequelize.define(alias,cols,config);

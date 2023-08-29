@@ -10,14 +10,24 @@ module.exports= function(sequelize,dataTypes){
             primaryKey : true,
             autoIncrement : true
         },
-        name:{
-            type:dataTypes.String
+        software:{
+            type:dataTypes.STRING
+        },
+        accesorios:{
+            type:dataTypes.STRING
+        },
+        telefonos:{
+            type:dataTypes.STRING
+        },
+        impresoras:{
+            type:dataTypes.STRING
         }
     }
 
     let config = {
         tableName : "categorias",
-        timestamps : false
+        timestamps : false,
+        paranoid : true
     }
 
     let Categoria = sequelize.define(alias,cols,config);

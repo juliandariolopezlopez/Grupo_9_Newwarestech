@@ -11,9 +11,18 @@ module.exports= function(sequelize,dataTypes){
             primaryKey : true,
             autoIncrement : true
         },
-        name:{
-            type:dataTypes.String
+        nombre:{
+            type:dataTypes.STRING
         },
+        numerodecuenta:{
+            type:dataTypes.INTEGER
+        },
+        fechaexpiracion:{
+            type:dataTypes.DATE
+        },
+        titular:{
+            type:dataTypes.STRING
+        }
 
         // Esstos dos tienen tablas pivot, hay que incluirlos?
 
@@ -55,6 +64,13 @@ module.exports= function(sequelize,dataTypes){
             otherKey : "proveedor_id",
             timestamps:false
         }) 
+        Banco.belongsToMany(models.Cartproduct,{
+            as: "cartporducts",
+            through:"banco_producto",
+            foreignKey : "banco_id",
+            otherKey : "cartproduct_id",
+            timestamps:false
+        });
     }
 
     return Banco;

@@ -11,19 +11,27 @@ module.exports= function(sequelize,dataTypes){
             primaryKey : true,
             autoIncrement : true
         },
-        name:{
-            type:dataTypes.String
+        razonsocial:{
+            type:dataTypes.STRING
         },
-
-        producto_id : {
-            type:dataTypes.INTEGER
+        direccion:{
+            type:dataTypes.STRING
+        },
+        cuit:{
+            type:dataTypes.INTEGER,
+            unique: true
+        },
+        telefono:{
+            type:dataTypes.INTEGER,
+            unique:true
         }
     
     }
 
     let config = {
         tableName : "proveedores",
-        timestamps : false
+        timestamps : false,
+        paranoid : true
     }
 
     let Proveedor = sequelize.define(alias,cols,config);

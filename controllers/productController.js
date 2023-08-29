@@ -5,9 +5,6 @@ const path = require('path');
 
 const expressValidator = require('express-validator');
 
-const productModel = require('../modelsJSON/product');
-const cartProductModel = require('../modelsJSON/cartProduct');
-
 const db = require("../database/models");
 
 const productController = {
@@ -332,7 +329,7 @@ const productController = {
 
        /*  const cartProducts =  cartProductModel.removeFromCart(id , userDataSession); */
 
-       db.CartProduct.update({
+       db.Cartproduct.update({
 
         
 
@@ -356,7 +353,7 @@ const productController = {
 
         /* const cartProducts = cartProductModel.cleanCart(userDataSession); */
 
-        db.CartProduct.update({
+        db.Cartproduct.update({
 
             productId:[]
             // Pregunta, el reemplazo por un array vacio elimina los existentes?
@@ -377,7 +374,7 @@ const productController = {
         
         /* let cartProducts = cartProductModel.checkCart(userEmailSession); */
 
-        db.CartProduct.findAll({
+        db.Cartproduct.findAll({
             where:{
                 email:userEmailSession
             }

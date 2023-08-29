@@ -1,5 +1,6 @@
 
-const userModel = require('../models/users');
+
+const db = require('../database/models');
 
 function userLoggedNavMiddleware(req,res,next){
 
@@ -9,7 +10,25 @@ function userLoggedNavMiddleware(req,res,next){
 /*  Figura como undefined al leer emailUser , la cookie */
 
     let emailInCookie = req.cookies.emailUser;
-    let userFromCookie = userModel.findByField('email',emailInCookie);
+
+    let userFromCookie = db.Usuario.findOne({
+        where:{
+
+            usuariotipo : "cliente",
+            email: emailInCookie
+
+        }}).then(function(usuario){
+
+            return usuario;
+
+        }).catch(function(e){
+
+            return console.log("No se encontro el usuario");
+
+        });
+
+
+    /* userModel.findByField('email',emailInCookie); */
     
         if(userFromCookie){ 
 

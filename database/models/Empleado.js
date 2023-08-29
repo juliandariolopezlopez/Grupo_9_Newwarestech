@@ -13,14 +13,15 @@ module.exports= function(sequelize,dataTypes){
             autoIncrement : true
         },
         name:{
-            type:dataTypes.String
+            type:dataTypes.STRING
         },
     
     }
 
     let config = {
         tableName : "empleados",
-        timestamps : false
+        timestamps : false,
+        paranoid : true
     }
 
     let Empleado = sequelize.define(alias,cols,config);

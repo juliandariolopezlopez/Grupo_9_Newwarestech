@@ -1,15 +1,9 @@
 const express = require('express');
 
-const userModel = require('../modelsJSON/users');
-
 const expressValidator = require('express-validator');
 
 const bcryptjs = require('bcryptjs');
 const session = require('express-session');
-
-const userAdminModel = require('../modelsJSON/usersAdmin');
-
-const cartProductModel = require('../modelsJSON/cartProduct.js');
 
 const db = require("../database/models");
 
@@ -188,7 +182,7 @@ const userController = {
 
         db.Usuario.findAll({
             where:{
-                userType:"clientUser"
+                usuariotipo:"cliente"
             }
         })
         .then(function(usuarios){

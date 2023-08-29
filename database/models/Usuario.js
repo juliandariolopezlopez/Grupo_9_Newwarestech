@@ -12,18 +12,35 @@ module.exports= function(sequelize,dataTypes){
             autoIncrement : true
         },
         name:{
-            type:dataTypes.String
+            type:dataTypes.STRING
         },
-
-        producto_id : {
+        apellido:{
+            type:dataTypes.STRING
+        },
+        email:{
+            type:dataTypes.STRING,
+            allowNull:false,
+            unique: true
+        },
+        password:{
+            type:dataTypes.STRING
+        },
+        telefono:{
             type:dataTypes.INTEGER
+        },
+        direccion:{
+            type:dataTypes.STRING
+        },
+        usuariotipo:{
+            type:dataTypes.STRING
         }
     
     }
 
     let config = {
         tableName : "usuarios",
-        timestamps : false
+        timestamps : true,
+        paranoid : true
     }
 
     let Usuario = sequelize.define(alias,cols,config);
