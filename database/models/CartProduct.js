@@ -39,7 +39,7 @@ module.exports= function(sequelize,dataTypes){
         // en models se usa Producto, porque asi usamos en el alias ("as")
         // el as de esta tabla es como se llama la asociacion
         
-        Cartproduct.belongsToMany (models.Usuario,{
+        /* Cartproduct.belongsToMany (models.Usuario,{
             as: "usuarios",
             through:"cartproduct_usuario",
             foreignKey : "cartproduct_id",
@@ -61,7 +61,7 @@ module.exports= function(sequelize,dataTypes){
             foreignKey : "cartproduct_id",
             otherKey : "banco_id",
             timestamps:false
-        });
+        }); */
 
 
     };

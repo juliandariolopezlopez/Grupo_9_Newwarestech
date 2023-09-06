@@ -13,14 +13,17 @@ const productController = {
 
     getPhones:(req,res)=>{ 
 
-        db.Producto.findAll({
+        db.Producto.findAll(/* {
             where:{
                 product_type:"phones"
             }
-        })
-        .then(function(productos){
+        } */)
+        .then(function(products){
+            
+            console.log(products)
+            /* const products = productos; */
+            
 
-            const products = productos;
             return res.render('productList', {
             products:products
         });

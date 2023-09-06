@@ -51,7 +51,7 @@ module.exports= function(sequelize,dataTypes){
         // belongsToMany es porque hay una relacion de muchos a muchos
         // esto genera una tabla intermedia, (de amgos lados o asociaciones)
 
-        Usuario.belongsToMany (models.Producto,{
+       /*  Usuario.belongsToMany (models.Producto,{
             as: "productos",
             through:"producto_usuario",
             foreignKey : "usuario_id",
@@ -75,7 +75,7 @@ module.exports= function(sequelize,dataTypes){
             foreignKey : "usuario_id",
             otherKey : "cartproduct_id",
             timestamps:false
-        });
+        }); */
     }
 
     return Usuario;

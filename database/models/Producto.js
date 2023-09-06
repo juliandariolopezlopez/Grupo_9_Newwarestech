@@ -18,7 +18,7 @@ module.exports= function(sequelize,dataTypes){
             type:dataTypes.INTEGER
         },
         imagen:{
-            type:dataTypes.BLOB,
+            type:dataTypes.STRING,
             allowNull: true
         },
         descripcion:{
@@ -27,8 +27,8 @@ module.exports= function(sequelize,dataTypes){
         stock:{
             type:dataTypes.INTEGER
         },
-        categoria_id : {
-            type: dataTypes.INTEGER
+        product_type : {
+            type: dataTypes.STRING
         }
         // Pregunta, es que en las tablas intermedias hay que incluir foreign Key?
         // usuario_id ??
@@ -49,12 +49,13 @@ module.exports= function(sequelize,dataTypes){
 
         // en ese caso usamos belongs to porque un producto pertenece a una categoria
 
-        Producto.belongsTo (models.Categoria,{
+        /* Categorias */
+       /*  Producto.belongsTo (models.Categoria,{
             as: "categoria",
             foreignKey : "categoria_id"
-        }) 
+        })  */
 
-        Producto.belongsToMany (models.Usuario,{
+        /* Producto.belongsToMany (models.Usuario,{
             as: "usuarios",
             through:"producto_usuario",
             foreignKey : "producto_id",
@@ -81,7 +82,7 @@ module.exports= function(sequelize,dataTypes){
             foreignKey : "producto_id",
             otherKey : "cartproduct_id",
             timestamps:false
-        });
+        }); */
 
     }
 
