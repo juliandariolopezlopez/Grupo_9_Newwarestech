@@ -57,24 +57,16 @@
 
           <form action='/users/register' method="POST"> 
             <div>
-            <label for="nombre">
+            <label for="username">
               <% if(errors.length>0){ %>
                 <% }else{%>
-                  <span>Nombre</span>
+                  <span>username</span>
                <% } %>
-              <input type="text" name="nombre" id="nombre" value="<%= values.nombre %>">
+              <input type="text" name="username" id="username" value="<%= values.username %>">
+              <p class="errors" style="color: red;"></p>
             </label>
             </div> 
 
-            <div>
-              <label for="apellido">
-                <% if(errors.length>0){ %>
-                  <% }else{%>
-                    <span>Apellido</span>
-                 <% } %>
-                <input type="text" name="apellido" id="apellido" value="<%= values.apellido %>" >
-              </label>
-              </div> 
 
           <div>
             <label for="email">
@@ -83,6 +75,7 @@
                   <span>Correo</span>
                <% } %>
               <input type="email" name="email" id="email" value="<%= values.email %>" />
+              <p class="errors" style="color: red;"></p>
             </label>
           </div>
 
@@ -94,6 +87,7 @@
                <% } %>
     
               <input type="password" name="password" id="password"/>
+              <p class="errors" style="color: red;"></p>
             </label>
           </div> 
 
@@ -105,6 +99,7 @@
                   <span>Confirmar Contreseña</span>
                <% } %>
               <input type="password" name="confirmpassword" id="confirmpassword"/>
+              <p class="errors" style="color: red;"></p>
             </label>
           </div>
 
@@ -112,6 +107,7 @@
             <label for="image">
               <span>Foto</span>
               <input type="file" name="image" id="image">
+              <p class="errors" style="color: red;"></p>
             </label>
           </div>
 
@@ -121,7 +117,7 @@
             </div>
 
               <div>
-              <input type="submit" value="Crear Cuenta">
+              <input type="submit" disabled id="submit-boton" value="Crear Cuenta">
               </div>
           
           </form>
@@ -158,5 +154,6 @@
       </section>
       <%- include('../partials/footer') %>
     </div>
+    <script src="../../public/js/registerForm.js"></script>
   </body>
 </html>

@@ -36,14 +36,16 @@
                     <i class="fa-solid fa-user"></i>
                     <label for="email">Usuario</label>
                     <input class="controls" type="email" name="email" id="email" value="<%= values.email%>" placeholder="Usuario">
+                    <p class="errors" style="color: red;"></p>
                 </div>
                 <div>
                     <i class="fa-solid fa-lock"></i>
                     <label for="password">Constraseña</label>
                     <input class="controls" type="password" name="password" id="password" placeholder="Contraseña">
+                    <p class="errors" style="color: red;"></p>
                 </div>
                 <div>
-                    <input class="buttons" type="submit" value="ingresar">
+                    <input class="buttons" disabled id="submit-boton" type="submit" value="ingresar">
                 </div>
                 <div>
                     <label for="rememberme">Recuerdame</label>
@@ -57,5 +59,6 @@
         </div>
         <%- include('../partials/footer') %>
     </div>
+    <script src="../../public/js/login.js"></script>
 </body>
 </html>

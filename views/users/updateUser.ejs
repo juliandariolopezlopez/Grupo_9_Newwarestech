@@ -5,17 +5,18 @@
 <form action="/users/<%= users.id %>/put?_method=put" method="post" enctype="multipart/form-data">
     <label for="image">Imagen: </label><input type="file" name="image" id="img"><br><br>
 
-    <label for="firstName">Nombre:  </label>
-    <input type="text" name="firstName" value="<%= users.firstName %>" > <br><br>
+    <label for="username"> username:  </label>
+    <input type="text" name="username" value="<%= users.username %>" > <br><br>
+    <p class="errors" style="color: red;"></p>
 
-    <label for="lastName">Apellido:  </label>
-    <input type="text" name="lastName" value="<%= users.lastName %>" > <br><br>
 
     <label for="password">password:  </label>
     <input type="password" name="password" value="<%= users.password %>" > <br><br>
+    <p class="errors" style="color: red;"></p>
 
     <label for="email">Email:  </label>
     <input type="text" name="email" value="<%= users.email %>" > <br><br>
+    <p class="errors" style="color: red;"></p>
     
     <label for="categoria">Categoria:  </label>
     <input type="text" name="category" value="<%= users.category %>" > <br><br>
