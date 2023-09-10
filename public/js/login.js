@@ -2,6 +2,7 @@ const emailInp = document.querySelector('#email');
 const passwordInp = document.querySelector('#password');
 const errorsList = document.querySelector('.errors');
 const submitBtn = document.querySelector('#submit-boton');
+const imageInp = document.querySelector('#image');
 
 
 emailInp.oninput = (e) => {

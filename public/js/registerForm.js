@@ -4,6 +4,7 @@ const passwordInp = document.querySelector('#password');
 const errorsList = document.querySelector('.errors');
 const submitBtn = document.querySelector('#submit-boton');
 const confirmpassword = document.querySelector('#confirmpassword');
+const imageInp = document.querySelector('#image');
 
 emailInp.oninput = (e) => {
     const isEmailCorrect = e.target.value.includes('@');
@@ -41,6 +42,16 @@ confirmpasswordInp.oninput = (e) => {
 
     if (length < 8) {
     e.target.nextElementSibling.innerHTML = 'La contraseña debe tener al menos 8 caracteres'
+    } else {
+    e.target.nextElementSibling.innerHTML = ''
+    }
+}
+
+imageInpInp.oninput = (e) => {
+    const isImageCorrect = e.target.value.im;
+
+    if (isImageCorrect) {
+    e.target.nextElementSibling.innerHTML = 'La imagen debe ser (JPG, JPEG, PNG, GIF)'
     } else {
     e.target.nextElementSibling.innerHTML = ''
     }
