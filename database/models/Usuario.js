@@ -11,7 +11,7 @@ module.exports= function(sequelize,dataTypes){
             primaryKey : true,
             autoIncrement : true
         },
-        name:{
+        nombre:{
             type:dataTypes.STRING
         },
         apellido:{

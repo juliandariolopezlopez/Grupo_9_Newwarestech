@@ -13,16 +13,14 @@ const productController = {
 
     getPhones:(req,res)=>{ 
 
-        db.Producto.findAll(/* {
+        db.Producto.findAll({
             where:{
                 product_type:"phones"
             }
-        } */)
+        })
         .then(function(products){
-            
-            console.log(products)
+
             /* const products = productos; */
-            
 
             return res.render('productList', {
             products:products
@@ -158,11 +156,14 @@ const productController = {
 
         db.Producto.create({
 
-            ...newProduct
-        })
+            ...newProduct,
 
-       /*  newProduct.image = '/images/' + req.file.filename; */
-            /* productModel.createOne(newProduct); */
+            newProduct: imagen = '/images/' + req.file.filename
+
+        });
+
+
+            /* productModel.createOne(newProduct); */ 
             
         return res.redirect('/products/:id/productDetail');
         

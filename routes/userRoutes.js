@@ -45,7 +45,7 @@ router.get('/userprofile',userController.getUserProfile);
 router.get('/:user/updateuser', authMiddleware ,userController.getuserToUpdate); 
 
 //@put /users/:id/put  formulario para update
-router.put('/:user/put',[ upload.single('image'), authMiddleware ], userController.userUpdate); 
+router.put('/:user/put',[ upload.single('imagen'), authMiddleware ], userController.userUpdate); 
 
 
 //@post /users/:id/deleteUser  funcion de  update

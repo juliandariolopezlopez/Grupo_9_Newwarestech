@@ -19,7 +19,7 @@ function userAdminLoggedNavMiddleware(req,res,next){
 
     }).catch(function(e){
 
-        return console.log("No se encontro el usuario administrador")
+        return console.log("MW : No se encontro el usuario administrador")
     })
     
     

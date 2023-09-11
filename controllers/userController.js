@@ -75,7 +75,7 @@ const userController = {
             ...req.body,
             password: bcryptjs.hashSync(req.body.password, 10),
             confirmpassword: bcryptjs.hashSync(req.body.confirmpassword, 10),
-            userType: "clientUser"
+            usuariotipo: "cliente"
         }
 
         db.Usuario.create({
@@ -138,9 +138,11 @@ const userController = {
         });
 
         db.Usuario.findOne({
+
             where: {
                 email: req.body.email
             }
+            
         }).then(function (usuario) {
 
             const userInLogin = usuario;

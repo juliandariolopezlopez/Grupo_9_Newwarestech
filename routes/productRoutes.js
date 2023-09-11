@@ -64,7 +64,7 @@ router.post('/:id/productCart', productController.addCart);
 router.get('/createProduct', productController.createProduct); 
 
 //@POST /products/createProduct
-router.post('/createProduct',[ validateAddProduct.validateCreateProduct, upload.single('image'), adminMiddleware], productController.addProduct); 
+router.post('/createProduct',[ validateAddProduct.validateCreateProduct, upload.single('imagen'), adminMiddleware], productController.addProduct); 
 
 
 //@GET /products/:id/productDetail
@@ -77,7 +77,7 @@ router.get('/:id/delete', adminMiddleware ,productController.deleteProduct);
 router.get('/:id/update', adminMiddleware ,productController.getUpdate); 
 
 //@put /products/:id/put  este es el update
-router.put('/:id/update',[ updateValidateProduct.validateUpdateProduct, upload.single('image'), adminMiddleware ],productController.updateProduct ); 
+router.put('/:id/update',[ updateValidateProduct.validateUpdateProduct, upload.single('imagen'), adminMiddleware ],productController.updateProduct ); 
 
 
 
