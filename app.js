@@ -18,8 +18,8 @@ const userAdminLoggedNavMiddleware = require('./middlewares/userAdminLoggedNavMi
 const mainRoutes = require('./routes/mainRoutes');
 const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/productRoutes'); 
-const apiUserRoutes = require ('./routes/api/userRoutes');
 const apiProductRoutes = require ('./routes/api/productRoutes');
+const apiUserRoutes = require ('./routes/api/userRoutes');
 
 
 // Especificando rutas de vistas
@@ -55,8 +55,8 @@ app.use(cookieParser());
 app.use(mainRoutes);
 app.use('/users', userRoutes);
 app.use('/products', productRoutes); ///products es un prefijo que se usa en el @get
-app.use('/api/products', productRoutes );
-app.use('/api/user', userRoutes) 
+app.use('/api/product', apiProductRoutes );
+app.use('/api/user', apiUserRoutes);
 
 //Levantando el servidor 
 app.listen(3005, ()=>{

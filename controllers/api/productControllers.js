@@ -3,11 +3,11 @@ const {Product} = require ('../../database/models');
 
 module.exports = {
     getAll: async (req, res) => {
-        const product = await product.findAll({
+        const productos = await product.findAll({
           raw:true
         });
 
-    res.json(product); 
+    res.json(productos); 
     }
 }
 
