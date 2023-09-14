@@ -173,20 +173,21 @@ getAdminRegister: (req, res) => {
         }).then(function (usuario) {
 
             let usuarioAdminEnBD = usuario;
+            
+            if (usuarioAdminEnBD) {
 
-            return usuarioAdminEnBD
+                return res.render('register', {
+
+                    errors: [{
+                        msg: "El mail ya existe, elija otro"
+                    }],
+                    values: req.body
+                })
+            }
         })
 
         /* const usuarioAdminEnBD = userAdminModel.findByField('email', req.body.email); */
 
-        if (usuarioAdminEnBD) {
-            return res.render('register', {
-                errors: [{
-                    msg: "El mail ya existe, elija otro"
-                }],
-                values: req.body
-            })
-        }
 
         const newUser = {
 
@@ -204,12 +205,14 @@ getAdminRegister: (req, res) => {
 
         if (newUser) {
 
-            const userClass = "AdminUser";
+            const usuariotipo = "administrador";
 
             db.Cartproduct.create({
+
                 email: req.body.email,
                 usuariotipo: "administrador",
                 productId: []
+                
             })
 
             /* cartProductModel.createCartProduct(newUser, userClass); */
